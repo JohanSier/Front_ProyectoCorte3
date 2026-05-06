@@ -1,0 +1,47 @@
+{
+  "docentes": [
+    {
+      "id": "a602",
+      "identificacion": "12345",
+      "nombre": "Elsa",
+      "apellido": "Patero"
+    },
+    {
+      "id": "b602",
+      "identificacion": "uno",
+      "nombre": "uno",
+      "apellido": "uno"
+    },
+    {
+      "id": "bf4d",
+      "identificacion": "123",
+      "nombre": "123",
+      "apellido": "123"
+    },
+    {
+      "id": "af3d",
+      "identificacion": "asd",
+      "nombre": "asd",
+      "apellido": "ad"
+    },
+    {
+      "id": "7c56",
+      "identificacion": "12",
+      "nombre": "12",
+      "apellido": "12"
+    },
+    {
+      "id": "fc89",
+      "identificacion": "Otro ",
+      "nombre": "Otro",
+      "apellido": "Otros"
+    },
+    {
+      "id": "d80e",
+      "identificacion": "123",
+      "nombre": "Juan",
+      "apellido": "Lopez"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

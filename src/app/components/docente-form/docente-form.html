@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="card p-4 shadow">
+    <h3>Registrar Nuevo Docente</h3>
+    <form [formGroup]="form" (ngSubmit)="guardar()">
+
+      <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" formControlName="nombre">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Apellido</label>
+        <input type="text" class="form-control" formControlName="apellido">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="text" class="form-control" formControlName="email">
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Guardar</button>
+    </form>
+  </div>
+</div>
