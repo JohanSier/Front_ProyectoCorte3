@@ -1,0 +1,63 @@
+<div class="flex justify-content-center align-items-center ">
+  <p-card header="Registrar Nuevo Colaborador" styleClass="w-3">
+    <form [formGroup]="form" (ngSubmit)="guardar()" class="flex flex-column gap-4">
+
+      <div class="flex flex-column gap-2 align-items-start">
+        <label for="tipoDocumento">Tipo de Documento</label>
+        <select id="tipoDocumento" pInputText formControlName="tipoDocumento">
+          <option value="">Seleccione...</option>
+          <option *ngFor="let tipo of tiposDocumento" [value]="tipo.valor">
+            {{ tipo.descripcion }}
+          </option>
+        </select>
+      </div>
+      <div class="flex flex-column gap-2 align-items-start">
+        <label for="numeroDocumento">Número de Documento</label>
+        <input id="numeroDocumento" type="text" pInputText formControlName="numeroDocumento" />
+      </div>
+      <div class="flex flex-column gap-2 align-items-start">
+        <label for="nombres">Nombres</label>
+        <input id="nombres" type="text" pInputText formControlName="nombres" />
+      </div>
+      <div class="flex flex-column gap-2 align-items-start">
+        <label for="apellidos">Apellidos</label>
+        <input id="apellidos" type="text" pInputText formControlName="apellidos" />
+      </div>
+
+      <div class="flex flex-column gap-2 align-items-start">
+        <label for="email">Email</label>
+        <input id="email" type="text" pInputText formControlName="email" />
+      </div>
+      <div class="flex flex-column gap-2 align-items-start">
+        <label for="telefono">Teléfono</label>
+        <input id="telefono" type="text" pInputText formControlName="telefono" />
+      </div>
+      <div class="flex flex-column gap-2 align-items-start">
+        <label for="direccion">Dirección</label>
+        <input id="direccion" type="text" pInputText formControlName="direccion" />
+      </div>
+      <div class="flex flex-column gap-2 align-items-start">
+        <label for="ciudad">Ciudad</label>
+        <input id="ciudad" type="text" pInputText formControlName="ciudad" />
+      </div>
+      <div class="flex flex-column gap-2 align-items-start">
+        <label for="fechaIngreso">Fecha de Ingreso</label>
+        <input id="fechaIngreso" type="date" pInputText formControlName="fechaIngreso" />
+      </div>
+      <div class="flex flex-column gap-2 align-items-start">
+        <label for="fechaNacimiento">Fecha de Nacimiento</label>
+        <input id="fechaNacimiento" type="date" pInputText formControlName="fechaNacimiento" />
+      </div>
+      <div class="flex flex-column gap-2 align-items-start">
+        <label for="genero">Género</label>
+        <input id="genero" type="text" pInputText formControlName="genero" />
+      </div>
+
+      <div class="flex justify-content-end w-full">
+        <button pButton type="submit" label="Guardar" icon="pi pi-save" [disabled]="form.invalid"></button>
+      </div>
+
+    </form>
+  </p-card>
+</div>
+

@@ -1,9 +1,11 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-  <div class="container">
-    <a class="navbar-brand" href="#">Gestión Docentes</a>
-    <div class="navbar-nav">
-      <a class="nav-link" routerLink="/listar" routerLinkActive="active">Listado</a>
-      <a class="nav-link" routerLink="/crear" routerLinkActive="active">Nuevo Docente</a>
-    </div>
+<p-toolbar>
+  <div class="p-toolbar-group-left">
+    <button pButton label="Gestión Docentes" routerLink="/" class="p-button-text"></button>
   </div>
-</nav>
+
+  <div class="p-toolbar-group-right">
+    <button pButton label="Listado" routerLink="/listar" routerLinkActive="active" class="p-button-text"></button>
+    <button pButton label="Nuevo" routerLink="/crear" routerLinkActive="active" class="p-button-text"></button>
+  </div>
+</p-toolbar>
+
