@@ -328,7 +328,49 @@ select {
     white-space: nowrap !important;
   }
  
-  .p-datatable-tbody > tr {
+.p-datatable-tbody > tr {
+  background: var(--bg-surface) !important;
+  transition: background var(--transition-fast) !important;
+
+  > td {
+    background: var(--bg-surface) !important;
+    padding: 14px 16px !important;
+    font-size: 0.9375rem !important;
+    border-bottom: 1px solid var(--border-light) !important;
+    border-right: none !important;
+    color: var(--text-primary) !important;
+  }
+
+  &:hover {
+    background: var(--brand-50) !important;
+
+    > td {
+      background: var(--brand-50) !important;
+    }
+  }
+
+  &:last-child > td {
+    border-bottom: none !important;
+  }
+}
+
+&.p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
+  background: var(--slate-50) !important;
+
+  > td {
+    background: var(--slate-50) !important;
+  }
+
+  &:hover {
+    background: var(--brand-50) !important;
+
+    > td {
+      background: var(--brand-50) !important;
+    }
+  }
+}
+  
+  /* .p-datatable-tbody > tr {
     transition: background var(--transition-fast) !important;
  
     > td {
@@ -354,7 +396,7 @@ select {
     &:hover {
       background: var(--brand-50) !important;
     }
-  }
+  } */
 }
  
 /* Paginator */
