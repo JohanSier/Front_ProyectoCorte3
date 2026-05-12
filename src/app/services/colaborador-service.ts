@@ -5,7 +5,7 @@ import {Observable, of} from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class ColaboradorService {
   private http = inject(HttpClient); // Forma moderna de inyectar en Angular 18/19
-  private apiUrl = 'http://localhost:8060/colaboradores';
+  private apiUrl = 'http://localhost:8860/kkom/colaboradores';
 
   getColaboradores(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
@@ -22,6 +22,6 @@ export class ColaboradorService {
   }
 
   getTiposDocumento(): Observable<{valor: string, descripcion: string}[]> {
-  return this.http.get<{valor: string, descripcion: string}[]>('http://localhost:8080/enums/tipos-documento');
+  return this.http.get<{valor: string, descripcion: string}[]>('http://localhost:8860/kkom/enums/tipos-documento');
 }
 }

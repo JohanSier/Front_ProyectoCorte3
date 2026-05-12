@@ -1,11 +1,38 @@
 <p-toolbar>
+  <!-- Brand -->
+  <div class="p-toolbar-group-start">
+    <a class="nav-brand" routerLink="/">
+      <div class="nav-logo">
+        <i class="pi pi-users"></i>
+      </div>
+      <span class="nav-brand-text">
+        Gestión <span>Colaboradores</span>
+      </span>
+    </a>
+  </div>
+
+  <!-- Navigation -->
+  <div class="p-toolbar-group-end nav-actions">
+    <a class="nav-link" routerLink="/listar" routerLinkActive="active-link">
+      <i class="pi pi-list"></i>
+      <span>Listado</span>
+    </a>
+    <a class="nav-cta" routerLink="/crear" routerLinkActive="active-link">
+      <i class="pi pi-plus"></i>
+      <span>Nuevo</span>
+    </a>
+  </div>
+</p-toolbar>
+
+
+<!-- <p-toolbar>
   <div class="p-toolbar-group-left">
-    <button pButton label="Gestión Docentes" routerLink="/" class="p-button-text"></button>
+    <button pButton label="Gestión Colaboradores" routerLink="/" class="p-button-text"></button>
   </div>
 
   <div class="p-toolbar-group-right">
     <button pButton label="Listado" routerLink="/listar" routerLinkActive="active" class="p-button-text"></button>
     <button pButton label="Nuevo" routerLink="/crear" routerLinkActive="active" class="p-button-text"></button>
   </div>
-</p-toolbar>
+</p-toolbar> -->
 

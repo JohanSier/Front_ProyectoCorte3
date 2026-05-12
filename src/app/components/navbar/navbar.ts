@@ -7,6 +7,7 @@ import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
+  standalone: true,
   imports: [
     CommonModule, MenubarModule, RouterModule, ToolbarModule, ButtonModule
   ],
@@ -16,7 +17,7 @@ import {CommonModule} from '@angular/common';
 export class Navbar {
   items = [
     {
-      label: 'Gestión Docentes',
+      label: 'Gestión Colaboradores',
       routerLink: '/'
     },
     {
