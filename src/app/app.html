@@ -1,5 +1,8 @@
-<app-navbar></app-navbar> <!-- Menu Bootstrap -->
+<mat-toolbar color="primary" class="toolbar">
+  <mat-icon class="toolbar-icon">restaurant</mat-icon>
+  <span class="toolbar-title">Comedor Comunitario</span>
+</mat-toolbar>
 
-<main>
-  <router-outlet></router-outlet> <!-- Cargan los componentes que se redirigen. -->
-</main>
+<div class="content">
+  <router-outlet />
+</div>
