@@ -4,7 +4,7 @@ import {Observable, of} from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ColaboradorService {
-  private http = inject(HttpClient); 
+  private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8860/kkom/colaboradores';
 
   getColaboradores(): Observable<any[]> {

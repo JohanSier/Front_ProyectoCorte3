@@ -72,10 +72,10 @@
         <div class="search-input-wrapper">
           <i class="pi pi-search search-icon"></i>
           <input type="text"
-                 pInputText
-                 [(ngModel)]="searchTerm"
-                 (input)="onSearch()"
-                 placeholder="Buscar colaborador..." />
+            pInputText
+            [(ngModel)]="searchTerm"
+            (input)="onSearch()"
+            placeholder="Buscar colaborador..." />
         </div>
         <button class="btn-icon" title="Actualizar" (click)="cargarColaboradores()">
           <i class="pi pi-refresh"></i>
@@ -87,7 +87,7 @@
     <p-table
       [value]="filteredColaboradores"
       [paginator]="true"
-      [rows]="8"
+      [rows]="15"
       [rowsPerPageOptions]="[5, 8, 15, 25]"
       [tableStyle]="{ 'min-width': '900px' }"
       stripedRows
@@ -177,53 +177,3 @@
   </div>
 </div>
 
-
-
-<!-- <div class="container mt-6">
-  <h3>Listado de Colaboradores</h3>
-  <div class="card">
-    <p-table [value]="colaboradores" stripedRows [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }">
-      <ng-template pTemplate="header">
-        <tr>
-          <th pSortableColumn="tipoDocumento">Tipo de Documento <p-sortIcon field="tipoDocumento"></p-sortIcon></th>
-          <th pSortableColumn="numeroDocumento">Número de Documento <p-sortIcon field="numeroDocumento"></p-sortIcon></th>
-          <th pSortableColumn="nombres">Nombres <p-sortIcon field="nombres"></p-sortIcon></th>
-          <th pSortableColumn="apellidos">Apellidos <p-sortIcon field="apellidos"></p-sortIcon></th>
-          <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
-          <th pSortableColumn="telefono">Teléfono <p-sortIcon field="telefono"></p-sortIcon></th>
-          <th pSortableColumn="direccion">Dirección <p-sortIcon field="direccion"></p-sortIcon></th>
-          <th pSortableColumn="ciudad">Ciudad <p-sortIcon field="ciudad"></p-sortIcon></th>
-          <th pSortableColumn="fechaIngreso">Fecha de Ingreso <p-sortIcon field="fechaIngreso"></p-sortIcon></th>
-          <th pSortableColumn="fechaNacimiento">Fecha de Nacimiento <p-sortIcon field="fechaNacimiento"></p-sortIcon></th>
-          <th pSortableColumn="genero">Género <p-sortIcon field="genero"></p-sortIcon></th>
-
-        </tr>
-      </ng-template>
-
-      <ng-template pTemplate="body" let-colaborador>
-        <tr>
-          <td>{{ colaborador.tipoDocumento }}</td>
-          <td>{{ colaborador.numeroDocumento }}</td>
-          <td>{{ colaborador.nombres }}</td>
-          <td>{{ colaborador.apellidos }}</td>
-          <td>{{ colaborador.email }}</td>
-          <td>{{ colaborador.telefono }}</td>
-          <td>{{ colaborador.direccion }}</td>
-          <td>{{ colaborador.ciudad }}</td>
-          <td>{{ colaborador.fechaIngreso | date }}</td>
-          <td>{{ colaborador.fechaNacimiento | date }}</td>
-          <td>{{ colaborador.genero }}</td>
-        </tr>
-      </ng-template>
-
-      <ng-template pTemplate="emptymessage">
-        <tr>
-          <td colspan="11" class="text-center">No hay colaboradores registrados.</td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </div>
-
-
-</div>
- -->
