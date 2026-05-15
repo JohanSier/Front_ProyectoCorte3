@@ -7,6 +7,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DatePickerModule } from 'primeng/datepicker';
+import { fechaPasadaValidator } from '../../validators/date.validators';
 
 @Component({
   selector: 'app-colaborador-form',
@@ -22,6 +23,7 @@ export class ColaboradorForm implements OnInit {
   currentStep = 1;
   totalSteps = 3;
   loading = false;
+  today: Date = new Date();
 
   // Fields per step — used for validation gating
   private stepFields: Record<number, string[]> = {
@@ -45,8 +47,8 @@ export class ColaboradorForm implements OnInit {
       telefono:        ['', Validators.required],
       direccion:       ['', Validators.required],
       ciudad:          ['', Validators.required],
-      fechaIngreso:    ['', Validators.required],
-      fechaNacimiento: ['', Validators.required],
+      fechaIngreso:    [null, [Validators.required, fechaPasadaValidator]],
+      fechaNacimiento: [null, [Validators.required, fechaPasadaValidator]],
       genero:          ['', Validators.required],
     });
   }
@@ -88,8 +90,16 @@ export class ColaboradorForm implements OnInit {
           this.loading = false;
           this.router.navigate(['/listar']);
         },
-        error: () => {
+        error: (err) => {
+
           this.loading = false;
+
+          console.error(err);
+
+          alert(
+            err?.error?.message ||
+            'No se pudo guardar el colaborador'
+          );
         }
       });
     }

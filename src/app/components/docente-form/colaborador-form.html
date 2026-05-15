@@ -305,14 +305,17 @@
                       formControlName="fechaNacimiento"
                       dateFormat="dd/mm/yy"
                       [showIcon]="true"
+                      [maxDate]="today"
                       placeholder="Selecciona una fecha"
                       styleClass="w-full">
                 </p-datepicker>
               </div>
               <span class="field-hint">Debe ser una fecha pasada</span>
               <span class="form-field-error"
-                    *ngIf="form.get('fechaNacimiento')?.invalid && form.get('fechaNacimiento')?.touched">
-                <i class="pi pi-exclamation-circle"></i> Fecha de nacimiento requerida
+                *ngIf="form.get('fechaNacimiento')?.hasError('fechaFutura')">
+
+                <i class="pi pi-exclamation-circle"></i>
+                La fecha de nacimiento no puede ser futura
               </span>
             </div>
 
@@ -328,14 +331,16 @@
                       formControlName="fechaIngreso"
                       dateFormat="dd/mm/yy"
                       [showIcon]="true"
+                      [maxDate]="today"
                       placeholder="Selecciona una fecha"
                       styleClass="w-full">
                 </p-datepicker>
               </div>
               <span class="field-hint">Fecha de vinculación a la organización</span>
               <span class="form-field-error"
-                    *ngIf="form.get('fechaIngreso')?.invalid && form.get('fechaIngreso')?.touched">
-                <i class="pi pi-exclamation-circle"></i> Fecha de ingreso requerida
+                    *ngIf="form.get('fechaIngreso')?.hasError('fechaFutura')">
+                <i class="pi pi-exclamation-circle"></i>
+                La fecha de ingreso no puede ser futura
               </span>
             </div>
 
