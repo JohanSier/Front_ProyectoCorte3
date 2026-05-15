@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { DatePickerModule } from 'primeng/datepicker';
 
 @Component({
   selector: 'app-colaborador-form',
   standalone: true,
-  imports: [FormsModule, CommonModule, ReactiveFormsModule, InputTextModule, ButtonModule, CardModule],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule, InputTextModule, ButtonModule, CardModule, DatePickerModule],
   templateUrl: './colaborador-form.html',
   styleUrls: ['./colaborador-form.scss', './colaborador-form-extras.scss']
 })

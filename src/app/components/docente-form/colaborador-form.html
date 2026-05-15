@@ -300,11 +300,14 @@
                 <span class="required-dot"></span>
               </label>
               <div class="field-input-wrapper">
-                <i class="pi pi-calendar field-icon"></i>
-                <input id="fechaNacimiento"
-                      type="date"
-                      pInputText
-                      formControlName="fechaNacimiento" />
+                <p-datepicker
+                      inputId="fechaNacimiento"
+                      formControlName="fechaNacimiento"
+                      dateFormat="dd/mm/yy"
+                      [showIcon]="true"
+                      placeholder="Selecciona una fecha"
+                      styleClass="w-full">
+                </p-datepicker>
               </div>
               <span class="field-hint">Debe ser una fecha pasada</span>
               <span class="form-field-error"
@@ -320,11 +323,14 @@
                 <span class="required-dot"></span>
               </label>
               <div class="field-input-wrapper">
-                <i class="pi pi-calendar-plus field-icon"></i>
-                <input id="fechaIngreso"
-                      type="date"
-                      pInputText
-                      formControlName="fechaIngreso" />
+                <p-datepicker
+                      inputId="fechaIngreso"
+                      formControlName="fechaIngreso"
+                      dateFormat="dd/mm/yy"
+                      [showIcon]="true"
+                      placeholder="Selecciona una fecha"
+                      styleClass="w-full">
+                </p-datepicker>
               </div>
               <span class="field-hint">Fecha de vinculación a la organización</span>
               <span class="form-field-error"
