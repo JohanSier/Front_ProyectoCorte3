@@ -1,0 +1,134 @@
+/* ─── Navbar ─────────────────────────────────────────────────────────────── */
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
+
+  .nav-logo {
+    width: 34px;
+    height: 34px;
+    background: linear-gradient(135deg, var(--brand-500), var(--brand-700));
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-brand);
+
+    i {
+      color: white;
+      font-size: 0.875rem;
+    }
+  }
+
+  .nav-brand-text {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+
+    span {
+      color: var(--brand-600);
+    }
+  }
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  font-family: var(--font-sans);
+  letter-spacing: -0.01em;
+
+  i {
+    font-size: 0.875rem;
+    opacity: 0.7;
+    transition: opacity var(--transition-fast);
+  }
+
+  &:hover {
+    color: var(--text-primary);
+    background: var(--bg-surface-2);
+
+    i {
+      opacity: 1;
+    }
+  }
+
+  &.active-link {
+    color: var(--brand-700);
+    background: var(--brand-50);
+    font-weight: 600;
+
+    i {
+      opacity: 1;
+    }
+  }
+}
+
+.nav-cta {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 18px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--brand-500), var(--brand-700));
+  border: none;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  font-family: var(--font-sans);
+  letter-spacing: -0.01em;
+  box-shadow: var(--shadow-brand);
+
+  i {
+    font-size: 0.875rem;
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(20, 128, 245, 0.35);
+    background: linear-gradient(135deg, var(--brand-400), var(--brand-600));
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Mobile nav */
+@media (max-width: 640px) {
+  .nav-brand-text {
+    display: none;
+  }
+
+  .nav-link span {
+    display: none;
+  }
+
+  .nav-cta span {
+    display: none;
+  }
+}
