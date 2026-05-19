@@ -1,0 +1,91 @@
+<div class="asistencia-container">
+
+  <div class="form-card">
+
+    <h2 class="title">Registrar Asistencia</h2>
+
+    <form [formGroup]="registrarAsistencia" class="form-ingrese text-left" name="registrarAsistencia">
+
+      <div class="form-grid">
+
+        <!-- Asistente ID -->
+        <div class="form-group">
+          <label>Asistente ID</label>
+          <input formControlName="asistenteId" name="asistenteId" type="number" class="form-control"
+            placeholder="Ingrese ID del asistente" (change)="findUser()">
+          <div class="error"
+            *ngIf="registrarAsistencia.get('asistenteId')?.touched && registrarAsistencia.get('asistenteId')?.invalid">
+            Campo inválido
+          </div>
+        </div>
+
+        <!-- Fecha -->
+        <div class="form-group">
+          <label>Fecha</label>
+          <input formControlName="fecha" name="fecha" type="date" class="form-control">
+          <div class="error"
+            *ngIf="registrarAsistencia.get('fecha')?.touched && registrarAsistencia.get('fecha')?.invalid">
+            Campo inválido
+          </div>
+        </div>
+
+        <!-- Tipo de servicio -->
+        <div class="form-group">
+          <label>Tipo de servicio</label>
+          <select formControlName="tipo_servicio" name="tipo_servicio" class="form-control">
+            <option value="">Seleccione</option>
+            <option *ngFor="let item of tiposServicio" [value]="item.id">{{item.descripcion}}</option>
+          </select>
+          <div class="error"
+            *ngIf="registrarAsistencia.get('tipo_servicio')?.touched && registrarAsistencia.get('tipo_servicio')?.invalid">
+            Campo inválido
+          </div>
+        </div>
+
+        <!-- Usuario creación -->
+        <div class="form-group">
+          <label>Usuario creación</label>
+          <input formControlName="usuariocrea" name="usuariocrea" type="text" class="form-control"
+            placeholder="Usuario que registra">
+          <div class="error"
+            *ngIf="registrarAsistencia.get('usuariocrea')?.touched && registrarAsistencia.get('usuariocrea')?.invalid">
+            Campo inválido
+          </div>
+        </div>
+
+        <!-- Estado -->
+        <div class="form-group">
+          <label>Estado</label>
+          <select formControlName="estado" name="estado" class="form-control">
+            <option value="">Seleccione</option>
+            <option *ngFor="let item of estadosUsuario" [value]="item.id">{{item.descripcion}}</option>
+          </select>
+          <div class="error"
+            *ngIf="registrarAsistencia.get('estado')?.touched && registrarAsistencia.get('estado')?.invalid">
+            Campo inválido
+          </div>
+        </div>
+
+        <!-- Observaciones -->
+        <div class="form-group full">
+          <label>Observaciones</label>
+          <textarea formControlName="observaciones" name="observaciones" class="form-control" rows="3"
+            placeholder="Comentarios opcionales" [maxLength]="30"></textarea>
+          <div class="error"
+            *ngIf="registrarAsistencia.get('observaciones')?.touched && registrarAsistencia.get('observaciones')?.invalid">
+            Campo inválido
+          </div>
+        </div>
+
+      </div>
+
+      <div class="actions">
+        <button (click)="sendRegister()" class=" btn-primary">Guardar</button>
+        <button (click)="ngOnInit()" class="btn-secondary">Limpiar</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
