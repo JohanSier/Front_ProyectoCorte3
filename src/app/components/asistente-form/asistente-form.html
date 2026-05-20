@@ -1,0 +1,66 @@
+<div class="container mt-4">
+  <div class="card p-4 shadow">
+    <h3>Registrar Asistente</h3>
+
+    <form [formGroup]="form" (ngSubmit)="guardar()">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Identificación</label>
+          <input type="text" class="form-control" formControlName="identificacion">
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Nombre completo</label>
+          <input type="text" class="form-control" formControlName="nombreCompleto">
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Fecha de nacimiento</label>
+          <input type="date" class="form-control" formControlName="fechaNacimiento">
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Edad</label>
+          <input type="number" class="form-control" formControlName="edad">
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Género</label>
+          <select class="form-select" formControlName="genero">
+            <option value="">Seleccione</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Barrio</label>
+          <input type="text" class="form-control" formControlName="barrio">
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Identificación responsable</label>
+          <input type="text" class="form-control" formControlName="identificacionResponsable">
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Estado del asistente</label>
+          <select class="form-select" formControlName="estadoAsistente">
+            <option value="Activo">Activo</option>
+            <option value="Inactivo">Inactivo</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Fecha de ingreso</label>
+          <input type="date" class="form-control" formControlName="fechaIngreso">
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+        Guardar
+      </button>
+    </form>
+  </div>
+</div>
