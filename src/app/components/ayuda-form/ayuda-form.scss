@@ -4,7 +4,7 @@
 }
 
 .ayuda-header {
-  background: #2e7d5e;
+  background: #1480f5;
   color: white;
   padding: 16px 24px;
   display: flex;
@@ -52,7 +52,7 @@
     font-family: inherit;
     transition: border-color 0.2s;
 
-    &:focus { border-color: #2e7d5e; }
+    &:focus { border-color: #1480f5; }
     &.input-error { border-color: #e53935; }
   }
 }
@@ -90,14 +90,14 @@
   .dot {
     width: 8px;
     height: 8px;
-    background: #2e7d5e;
+    background: #1480f5;
     border-radius: 50%;
     display: inline-block;
   }
 }
 
 .btn-guardar {
-  background: #2e7d5e;
+  background: #1480f5;
   color: white;
   border: none;
   border-radius: 8px;
@@ -108,13 +108,13 @@
   width: 100%;
   transition: background 0.2s;
 
-  &:hover { background: #245f49; }
+  &:hover { background: #1480f5; }
 }
 
 .btn-cancelar {
   background: white;
-  color: #2e7d5e;
-  border: 2px solid #2e7d5e;
+  color: #1480f5;
+  border: 2px solid #1480f5;
   border-radius: 8px;
   padding: 14px;
   font-size: 15px;
