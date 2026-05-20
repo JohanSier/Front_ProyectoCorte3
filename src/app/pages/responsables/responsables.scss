@@ -1,0 +1,65 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-card {
+  border-radius: 12px;
+}
+
+.form-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 16px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.checkbox-row {
+  padding: 4px 0;
+}
+
+.ninos-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ninos-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ninos-label {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.ninos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nino-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nino-field {
+  flex: 1;
+}
+
+mat-card-actions {
+  padding: 16px;
+  gap: 8px;
+  display: flex;
+}
