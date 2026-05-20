@@ -1,26 +1,96 @@
-<div class="container mt-4">
-  <h3>Listado de Docentes</h3>
+<div class="page-container">
 
-  <table class="table table-striped mt-3">
-    <thead class="table-dark">
-    <tr>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>Email</th>
-    </tr>
-    </thead>
-    <tbody>
-      @for (docente of docentes; track $index) {
-        <tr>
-          <td>{{ docente.nombre }}</td>
-          <td>{{ docente.apellido }}</td>
-          <td>{{ docente.email }}</td>
-        </tr>
-      } @empty {
-        <tr>
-          <td colspan="3" class="text-center">No hay docentes registrados.</td>
-        </tr>
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-icon mat-card-avatar>school</mat-icon>
+      <mat-card-title>Registrar Docente</mat-card-title>
+      <mat-card-subtitle>Ingrese los datos del nuevo docente</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="form" class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" placeholder="Ej: Carlos">
+          <mat-icon matSuffix>person</mat-icon>
+          @if (form.get('nombre')?.hasError('required') && form.get('nombre')?.touched) {
+            <mat-error>El nombre es requerido</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido</mat-label>
+          <input matInput formControlName="apellido" placeholder="Ej: García">
+          <mat-icon matSuffix>person_outline</mat-icon>
+          @if (form.get('apellido')?.hasError('required') && form.get('apellido')?.touched) {
+            <mat-error>El apellido es requerido</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Correo electrónico</mat-label>
+          <input matInput formControlName="email" placeholder="correo@ejemplo.com" type="email">
+          <mat-icon matSuffix>email</mat-icon>
+          @if (form.get('email')?.hasError('required') && form.get('email')?.touched) {
+            <mat-error>El correo es requerido</mat-error>
+          }
+          @if (form.get('email')?.hasError('email') && form.get('email')?.touched) {
+            <mat-error>Correo no válido</mat-error>
+          }
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-stroked-button type="button" (click)="form.reset()">Limpiar</button>
+      <button mat-flat-button color="primary" (click)="guardar()" [disabled]="form.invalid || submitting">
+        @if (submitting) {
+          <mat-spinner diameter="20" />
+        } @else {
+          <mat-icon>save</mat-icon> Guardar
+        }
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-divider class="section-divider" />
+
+  <mat-card class="table-card">
+    <mat-card-header>
+      <mat-icon mat-card-avatar>list</mat-icon>
+      <mat-card-title>Listado de Docentes</mat-card-title>
+      <mat-card-subtitle>{{ docentes.length }} docente(s) registrado(s)</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      @if (loading) {
+        <div class="spinner-container">
+          <mat-spinner diameter="40" />
+        </div>
+      } @else if (docentes.length === 0) {
+        <div class="empty-state">
+          <mat-icon>school</mat-icon>
+          <p>No hay docentes registrados aún.</p>
+        </div>
+      } @else {
+        <table mat-table [dataSource]="docentes" class="full-table">
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let row">{{ row.nombre }}</td>
+          </ng-container>
+          <ng-container matColumnDef="apellido">
+            <th mat-header-cell *matHeaderCellDef>Apellido</th>
+            <td mat-cell *matCellDef="let row">{{ row.apellido }}</td>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Correo</th>
+            <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
       }
-    </tbody>
-  </table>
+    </mat-card-content>
+  </mat-card>
+
 </div>
