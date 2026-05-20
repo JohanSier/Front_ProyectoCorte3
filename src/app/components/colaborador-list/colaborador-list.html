@@ -1,0 +1,179 @@
+<div class="list-page">
+
+  <!-- Page Header -->
+  <div class="list-page-header">
+    <div class="header-left">
+      <div class="page-icon">
+        <i class="pi pi-users"></i>
+      </div>
+      <div>
+        <h1 class="page-title">Colaboradores</h1>
+        <p class="page-subtitle">Gestiona el equipo de la organización</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <a class="btn-primary" routerLink="/crear">
+        <i class="pi pi-plus"></i>
+        Nuevo Colaborador
+      </a>
+    </div>
+  </div>
+
+  <!-- Stats Row -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-icon icon-blue">
+        <i class="pi pi-users"></i>
+      </div>
+      <div class="stat-content">
+        <div class="stat-value">{{ colaboradores.length }}</div>
+        <div class="stat-label">Total colaboradores</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon icon-pink">
+        <i class="pi pi-user-plus"></i>
+      </div>
+      <div class="stat-content">
+        <div class="stat-value">{{ colaboradoresFemenino }}</div>
+        <div class="stat-label">Género femenino</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon icon-amber">
+        <i class="pi pi-user"></i>
+      </div>
+      <div class="stat-content">
+        <div class="stat-value">{{ colaboradoresMasculino }}</div>
+        <div class="stat-label">Género masculino</div>
+      </div>
+    </div>
+    <!-- <div class="stat-card">
+      <div class="stat-icon icon-slate">
+        <i class="pi pi-map-marker"></i>
+      </div> -->
+      <!-- <div class="stat-content">
+        <div class="stat-value">{{ ciudadesUnicas }}</div>
+        <div class="stat-label">Ciudades</div>
+      </div>
+    </div>-->
+  </div>
+
+  <!-- Table Card -->
+  <div class="table-card">
+
+    <!-- Table Header -->
+    <div class="table-card-header">
+      <div class="table-title-group">
+        <h2 class="table-title">Directorio de Colaboradores</h2>
+        <p class="table-subtitle">{{ colaboradores.length }} registros encontrados</p>
+      </div>
+      <div class="table-toolbar">
+        <div class="search-input-wrapper">
+          <i class="pi pi-search search-icon"></i>
+          <input type="text"
+            pInputText
+            [(ngModel)]="searchTerm"
+            (input)="onSearch()"
+            placeholder="Buscar colaborador..." />
+        </div>
+        <button class="btn-icon" title="Actualizar" (click)="cargarColaboradores()">
+          <i class="pi pi-refresh"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <p-table
+      [value]="filteredColaboradores"
+      [paginator]="true"
+      [rows]="15"
+      [rowsPerPageOptions]="[5, 8, 15, 25]"
+      [tableStyle]="{ 'min-width': '900px' }"
+      stripedRows
+      [loading]="tableLoading">
+
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="nombres" style="min-width:200px">
+            Colaborador <p-sortIcon field="nombres"></p-sortIcon>
+          </th>
+          <th pSortableColumn="tipoDocumento" style="min-width:140px">
+            Documento <p-sortIcon field="tipoDocumento"></p-sortIcon>
+          </th>
+          <th pSortableColumn="email" style="min-width:180px">
+            Email <p-sortIcon field="email"></p-sortIcon>
+          </th>
+          <th pSortableColumn="telefono" style="min-width:130px">
+            Teléfono <p-sortIcon field="telefono"></p-sortIcon>
+          </th>
+          <th pSortableColumn="ciudad" style="min-width:120px">
+            Ciudad <p-sortIcon field="ciudad"></p-sortIcon>
+          </th>
+          <th pSortableColumn="fechaIngreso" style="min-width:140px">
+            Ingreso <p-sortIcon field="fechaIngreso"></p-sortIcon>
+          </th>
+          <th pSortableColumn="genero" style="min-width:100px">
+            Género <p-sortIcon field="genero"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-c>
+        <tr>
+          <!-- Name + Avatar -->
+          <td>
+            <div class="collaborator-cell">
+              <div class="collaborator-avatar">
+                {{ getInitials(c.nombres, c.apellidos) }}
+              </div>
+              <div>
+                <div class="collaborator-name">{{ c.nombres }} {{ c.apellidos }}</div>
+              </div>
+            </div>
+          </td>
+          <!-- Document -->
+          <td>
+            <span class="doc-badge">{{ c.tipoDocumento }}</span>
+            <span style="margin-left:6px; font-size:0.9rem; color:var(--text-secondary)">
+              {{ c.numeroDocumento }}
+            </span>
+          </td>
+          <!-- Email -->
+          <td style="color:var(--text-secondary); font-size:0.9rem">{{ c.email }}</td>
+          <!-- Phone -->
+          <td style="font-size:0.9rem">{{ c.telefono }}</td>
+          <!-- City -->
+          <td style="font-size:0.9rem">{{ c.ciudad }}</td>
+          <!-- Date -->
+          <td style="font-size:0.9rem; color:var(--text-secondary)">
+            {{ c.fechaIngreso | date:'dd MMM yyyy' }}
+          </td>
+          <!-- Gender -->
+          <td style="font-size:0.9rem">{{ c.genero }}</td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="7">
+            <div class="empty-state">
+              <div class="empty-icon">
+                <i class="pi pi-users"></i>
+              </div>
+              <h3 class="empty-title">Sin colaboradores</h3>
+              <p class="empty-text">No hay registros que coincidan con tu búsqueda.</p>
+              <a class="btn-primary" routerLink="/crear">
+                <i class="pi pi-plus"></i>
+                Agregar el primero
+              </a>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+
+    </p-table>
+
+  </div>
+</div>
+

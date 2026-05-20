@@ -1,9 +1,68 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-  <div class="container">
-    <a class="navbar-brand" href="#">Gestión Asistentes</a>
-    <div class="navbar-nav">
-      <a class="nav-link" routerLink="/asistentes/listar" routerLinkActive="active">Listado</a>
-      <a class="nav-link" routerLink="/asistentes/crear" routerLinkActive="active">Registrar Asistente</a>
-    </div>
+<div class="sidebar">
+
+  <div class="sidebar-header">
+    <h4 class="m-0">Comedor</h4>
   </div>
-</nav>
+
+  <div class="accordion sidebar-menu" id="sidebarAccordion">
+
+    <!-- Asistentes -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="asistente">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseAsistente" aria-expanded="false" aria-controls="collapseAsistente">
+          Asistente
+        </button>
+      </h2>
+      <div id="collapseAsistente" class="accordion-collapse collapse" aria-labelledby="asistente"
+           data-bs-parent="#sidebarAccordion">
+        <div class="accordion-body p-0">
+          <a class="sidebar-link" routerLink="/asistentes/listar">Listado Asistentes</a>
+          <a class="sidebar-link" routerLink="/asistentes/crear">Registrar Asistente</a>
+          <a class="sidebar-link" routerLink="/registrar-asistencia">Registrar Asistencia</a>
+          <a class="sidebar-link" href="#">Buscar asistente</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Responsables -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="responsables">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseResponsable">
+          Responsable
+        </button>
+      </h2>
+
+      <div id="collapseResponsable" class="accordion-collapse collapse" data-bs-parent="#sidebarAccordion">
+        <div class="accordion-body p-0">
+          <a class="sidebar-link" href="#">Registrar Responsable</a>
+          <a class="sidebar-link" href="#">Buscar Responsable</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Colaboradores -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="colaborador">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseColaboradores">
+          Colaboradores
+        </button>
+      </h2>
+
+      <div id="collapseColaboradores" class="accordion-collapse collapse" data-bs-parent="#sidebarAccordion">
+        <div class="accordion-body p-0">
+          <a class="sidebar-link" routerLink="/crear">Registrar Colaborador</a>
+          <a class="sidebar-link" routerLink="/listar">Buscar Colaborador</a>
+          <a class="sidebar-link" href="#">Registrar Ayuda</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="main-content">
+  <h2>Contenido principal</h2>
+</div>

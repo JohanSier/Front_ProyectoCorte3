@@ -1,0 +1,413 @@
+<div class="form-page">
+
+  <!-- Page Header -->
+  <div class="form-page-header">
+    <div class="page-header-left">
+      <div class="page-icon">
+        <i class="pi pi-user-plus"></i>
+      </div>
+      <div>
+        <h1 class="page-title">Nuevo Colaborador</h1>
+        <p class="page-subtitle">Completa los pasos para registrar un colaborador</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step Indicator -->
+  <div class="step-indicator">
+    <!-- Step 1 -->
+    <div class="step-item">
+      <div class="step-circle"
+            [class.step-active]="currentStep === 1"
+            [class.step-done]="currentStep > 1">
+        <i *ngIf="currentStep > 1" class="pi pi-check" style="font-size:0.75rem"></i>
+        <span *ngIf="currentStep <= 1">1</span>
+      </div>
+      <span class="step-label"
+            [class.label-active]="currentStep === 1"
+            [class.label-done]="currentStep > 1">
+        Identificación
+      </span>
+      <div class="step-connector" [class.connector-done]="currentStep > 1"></div>
+    </div>
+    <!-- Step 2 -->
+    <div class="step-item">
+      <div class="step-circle"
+            [class.step-active]="currentStep === 2"
+            [class.step-done]="currentStep > 2">
+        <i *ngIf="currentStep > 2" class="pi pi-check" style="font-size:0.75rem"></i>
+        <span *ngIf="currentStep <= 2">2</span>
+      </div>
+      <span class="step-label"
+            [class.label-active]="currentStep === 2"
+            [class.label-done]="currentStep > 2">
+        Contacto
+      </span>
+      <div class="step-connector" [class.connector-done]="currentStep > 2"></div>
+    </div>
+    <!-- Step 3 -->
+    <div class="step-item">
+      <div class="step-circle"
+            [class.step-active]="currentStep === 3"
+            [class.step-done]="currentStep > 3">
+        <i *ngIf="currentStep > 3" class="pi pi-check" style="font-size:0.75rem"></i>
+        <span *ngIf="currentStep <= 3">3</span>
+      </div>
+      <span class="step-label"
+            [class.label-active]="currentStep === 3"
+            [class.label-done]="currentStep > 3">
+        Fechas
+      </span>
+    </div>
+  </div>
+
+  <!-- Form Card -->
+  <form [formGroup]="form" (ngSubmit)="guardar()">
+    <div class="form-card">
+
+      <!-- Step 1: Identificación -->
+      <ng-container *ngIf="currentStep === 1">
+        <div class="form-card-header">
+          <h2 class="step-title">Datos de Identificación</h2>
+          <p class="step-description">Tipo y número de documento, nombre completo y género</p>
+        </div>
+        <div class="form-card-body">
+          <div class="form-grid cols-2">
+
+            <!-- Tipo de Documento -->
+            <div class="form-field">
+              <label class="field-label" for="tipoDocumento">
+                Tipo de Documento
+                <span class="required-dot"></span>
+              </label>
+              <div class="field-input-wrapper">
+                <i class="pi pi-id-card field-icon"></i>
+                <select id="tipoDocumento"
+                        formControlName="tipoDocumento"
+                        class="p-inputtext prime-select"
+                        style="width:100%">
+                  <option value="">Seleccione...</option>
+                  <option *ngFor="let tipo of tiposDocumento" [value]="tipo.valor">
+                    {{ tipo.descripcion }}
+                  </option>
+                </select>
+              </div>
+              <span class="form-field-error"
+                    *ngIf="form.get('tipoDocumento')?.invalid && form.get('tipoDocumento')?.touched">
+                <i class="pi pi-exclamation-circle"></i> Selecciona un tipo de documento
+              </span>
+            </div>
+
+            <!-- Número de Documento -->
+            <div class="form-field">
+              <label class="field-label" for="numeroDocumento">
+                Número de Documento
+                <span class="required-dot"></span>
+              </label>
+              <div class="field-input-wrapper">
+                <i class="pi pi-hashtag field-icon"></i>
+                <input id="numeroDocumento"
+                      type="text"
+                      pInputText
+                      formControlName="numeroDocumento"
+                      placeholder="Ej. 1023456789" />
+              </div>
+              <span class="form-field-error"
+                    *ngIf="form.get('numeroDocumento')?.invalid && form.get('numeroDocumento')?.touched">
+                <i class="pi pi-exclamation-circle"></i> Número de documento requerido
+              </span>
+            </div>
+
+            <!-- Nombres -->
+            <div class="form-field">
+              <label class="field-label" for="nombres">
+                Nombres
+                <span class="required-dot"></span>
+              </label>
+              <div class="field-input-wrapper">
+                <i class="pi pi-user field-icon"></i>
+                <input id="nombres"
+                      type="text"
+                      pInputText
+                      formControlName="nombres"
+                      placeholder="Ej. Juan Carlos" />
+              </div>
+              <span class="form-field-error"
+                    *ngIf="form.get('nombres')?.invalid && form.get('nombres')?.touched">
+                <i class="pi pi-exclamation-circle"></i> Nombres requeridos
+              </span>
+            </div>
+
+            <!-- Apellidos -->
+            <div class="form-field">
+              <label class="field-label" for="apellidos">
+                Apellidos
+                <span class="required-dot"></span>
+              </label>
+              <div class="field-input-wrapper">
+                <i class="pi pi-user field-icon"></i>
+                <input id="apellidos"
+                      type="text"
+                      pInputText
+                      formControlName="apellidos"
+                      placeholder="Ej. García López" />
+              </div>
+              <span class="form-field-error"
+                    *ngIf="form.get('apellidos')?.invalid && form.get('apellidos')?.touched">
+                <i class="pi pi-exclamation-circle"></i> Apellidos requeridos
+              </span>
+            </div>
+
+            <!-- Género -->
+            <div class="form-field span-2">
+              <label class="field-label" for="genero">
+                Género
+                <span class="required-dot"></span>
+              </label>
+              <div class="gender-options">
+                <label class="gender-option" [class.gender-selected]="form.get('genero')?.value === 'Masculino'">
+                  <input type="radio" formControlName="genero" value="Masculino" />
+                  <i class="pi pi-mars"></i>
+                  <span>Masculino</span>
+                </label>
+                <label class="gender-option" [class.gender-selected]="form.get('genero')?.value === 'Femenino'">
+                  <input type="radio" formControlName="genero" value="Femenino" />
+                  <i class="pi pi-venus"></i>
+                  <span>Femenino</span>
+                </label>
+                <!-- <label class="gender-option" [class.gender-selected]="form.get('genero')?.value === 'Otro'">
+                  <input type="radio" formControlName="genero" value="Otro" />
+                  <i class="pi pi-star"></i>
+                  <span>Otro</span>
+                </label> -->
+              </div>
+              <span class="form-field-error"
+                    *ngIf="form.get('genero')?.invalid && form.get('genero')?.touched">
+                <i class="pi pi-exclamation-circle"></i> Selecciona una opción
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Step 2: Contacto -->
+      <ng-container *ngIf="currentStep === 2">
+        <div class="form-card-header">
+          <h2 class="step-title">Información de Contacto</h2>
+          <p class="step-description">Email, teléfono, dirección y ciudad</p>
+        </div>
+        <div class="form-card-body">
+          <div class="form-grid cols-2">
+
+            <!-- Email -->
+            <div class="form-field span-2">
+              <label class="field-label" for="email">
+                Correo Electrónico
+                <span class="required-dot"></span>
+              </label>
+              <div class="field-input-wrapper">
+                <i class="pi pi-envelope field-icon"></i>
+                <input id="email"
+                      type="email"
+                      pInputText
+                      formControlName="email"
+                      placeholder="correo@ejemplo.com" />
+              </div>
+              <span class="form-field-error"
+                    *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+                <i class="pi pi-exclamation-circle"></i> Ingresa un email válido
+              </span>
+            </div>
+
+            <!-- Teléfono -->
+            <div class="form-field">
+              <label class="field-label" for="telefono">
+                Teléfono
+                <span class="required-dot"></span>
+              </label>
+              <div class="field-input-wrapper">
+                <i class="pi pi-phone field-icon"></i>
+                <input id="telefono"
+                      type="tel"
+                      pInputText
+                      formControlName="telefono"
+                      placeholder="Ej. 3001234567" />
+              </div>
+              <span class="form-field-error"
+                    *ngIf="form.get('telefono')?.invalid && form.get('telefono')?.touched">
+                <i class="pi pi-exclamation-circle"></i> Teléfono requerido
+              </span>
+            </div>
+
+            <!-- Ciudad -->
+            <div class="form-field">
+              <label class="field-label" for="ciudad">
+                Ciudad
+                <span class="required-dot"></span>
+              </label>
+              <div class="field-input-wrapper">
+                <i class="pi pi-map-marker field-icon"></i>
+                <input id="ciudad"
+                      type="text"
+                      pInputText
+                      formControlName="ciudad"
+                      placeholder="Ej. Bogotá" />
+              </div>
+              <span class="form-field-error"
+                    *ngIf="form.get('ciudad')?.invalid && form.get('ciudad')?.touched">
+                <i class="pi pi-exclamation-circle"></i> Ciudad requerida
+              </span>
+            </div>
+
+            <!-- Dirección -->
+            <div class="form-field span-2">
+              <label class="field-label" for="direccion">
+                Dirección
+                <span class="required-dot"></span>
+              </label>
+              <div class="field-input-wrapper">
+                <i class="pi pi-home field-icon"></i>
+                <input id="direccion"
+                    type="text"
+                    pInputText
+                    formControlName="direccion"
+                    placeholder="Ej. Calle 123 # 45-67" />
+              </div>
+              <span class="form-field-error"
+                    *ngIf="form.get('direccion')?.invalid && form.get('direccion')?.touched">
+                <i class="pi pi-exclamation-circle"></i> Dirección requerida
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Step 3: Fechas -->
+      <ng-container *ngIf="currentStep === 3">
+        <div class="form-card-header">
+          <h2 class="step-title">Fechas del Colaborador</h2>
+          <p class="step-description">Fecha de nacimiento y fecha de ingreso a la organización</p>
+        </div>
+        <div class="form-card-body">
+          <div class="form-grid cols-2">
+
+            <!-- Fecha de Nacimiento -->
+            <div class="form-field">
+              <label class="field-label" for="fechaNacimiento">
+                Fecha de Nacimiento
+                <span class="required-dot"></span>
+              </label>
+              <div class="field-input-wrapper">
+                <p-datepicker
+                      inputId="fechaNacimiento"
+                      formControlName="fechaNacimiento"
+                      dateFormat="dd/mm/yy"
+                      [showIcon]="true"
+                      [maxDate]="today"
+                      placeholder="Selecciona una fecha"
+                      styleClass="w-full">
+                </p-datepicker>
+              </div>
+              <span class="field-hint">Debe ser una fecha pasada</span>
+              <span class="form-field-error"
+                *ngIf="form.get('fechaNacimiento')?.hasError('fechaFutura')">
+
+                <i class="pi pi-exclamation-circle"></i>
+                La fecha de nacimiento no puede ser futura
+              </span>
+            </div>
+
+            <!-- Fecha de Ingreso -->
+            <div class="form-field">
+              <label class="field-label" for="fechaIngreso">
+                Fecha de Ingreso
+                <span class="required-dot"></span>
+              </label>
+              <div class="field-input-wrapper">
+                <p-datepicker
+                      inputId="fechaIngreso"
+                      formControlName="fechaIngreso"
+                      dateFormat="dd/mm/yy"
+                      [showIcon]="true"
+                      [maxDate]="today"
+                      placeholder="Selecciona una fecha"
+                      styleClass="w-full">
+                </p-datepicker>
+              </div>
+              <span class="field-hint">Fecha de vinculación a la organización</span>
+              <span class="form-field-error"
+                    *ngIf="form.get('fechaIngreso')?.hasError('fechaFutura')">
+                <i class="pi pi-exclamation-circle"></i>
+                La fecha de ingreso no puede ser futura
+              </span>
+            </div>
+
+            <!-- Review Summary -->
+            <div class="review-card span-2">
+              <div class="review-header">
+                <i class="pi pi-eye"></i>
+                <span>Resumen del registro</span>
+              </div>
+              <div class="review-grid">
+                <div class="review-item" *ngIf="form.get('nombres')?.value || form.get('apellidos')?.value">
+                  <span class="review-label">Nombre</span>
+                  <span class="review-value">{{ form.get('nombres')?.value }} {{ form.get('apellidos')?.value }}</span>
+                </div>
+                <div class="review-item" *ngIf="form.get('tipoDocumento')?.value">
+                  <span class="review-label">Documento</span>
+                  <span class="review-value">{{ form.get('tipoDocumento')?.value }} · {{ form.get('numeroDocumento')?.value }}</span>
+                </div>
+                <div class="review-item" *ngIf="form.get('email')?.value">
+                  <span class="review-label">Email</span>
+                  <span class="review-value">{{ form.get('email')?.value }}</span>
+                </div>
+                <div class="review-item" *ngIf="form.get('ciudad')?.value">
+                  <span class="review-label">Ciudad</span>
+                  <span class="review-value">{{ form.get('ciudad')?.value }}</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Footer -->
+      <div class="form-card-footer">
+        <span class="footer-info">
+          <i class="pi pi-info-circle"></i>
+          Paso {{ currentStep }} de {{ totalSteps }}
+        </span>
+        <div class="footer-actions">
+          <button type="button"
+                  class="btn-secondary"
+                  *ngIf="currentStep > 1"
+                  (click)="prevStep()">
+            <i class="pi pi-arrow-left"></i>
+            Anterior
+          </button>
+          <button type="button"
+                  class="btn-primary"
+                  *ngIf="currentStep < totalSteps"
+                  (click)="nextStep()"
+                  [disabled]="!isStepValid()">
+            Siguiente
+            <i class="pi pi-arrow-right"></i>
+          </button>
+          <button type="submit"
+                  class="btn-primary"
+                  *ngIf="currentStep === totalSteps"
+                  [disabled]="form.invalid || loading">
+            <i class="pi pi-spin pi-spinner" *ngIf="loading"></i>
+            <i class="pi pi-check" *ngIf="!loading"></i>
+            {{ loading ? 'Guardando...' : 'Guardar Colaborador' }}
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </form>
+
+</div>

@@ -1,0 +1,71 @@
+<div class="asistencia-container">
+
+  <div class="form-card">
+
+    <h2 class="title">Registrar Asistencia</h2>
+
+    <form>
+
+      <div class="form-grid">
+
+        <!-- Asistente ID -->
+        <div class="form-group">
+          <label>Asistente ID</label>
+          <input type="number" class="form-control" placeholder="Ingrese ID del asistente">
+        </div>
+
+        <!-- Fecha -->
+        <div class="form-group">
+          <label>Fecha</label>
+          <input type="date" class="form-control">
+        </div>
+
+        <!-- Tipo de servicio -->
+        <div class="form-group">
+          <label>Tipo de servicio</label>
+          <select class="form-control">
+            <option value="">Seleccione</option>
+            <option value="DESAYUNO">Desayuno</option>
+            <option value="ALMUERZO">Almuerzo</option>
+          </select>
+        </div>
+
+        <!-- Usuario creación -->
+        <div class="form-group">
+          <label>Usuario creación</label>
+          <input type="text" class="form-control" placeholder="Usuario que registra">
+        </div>
+
+        <!-- Fecha creación -->
+        <div class="form-group">
+          <label>Fecha creación</label>
+          <input type="datetime-local" class="form-control">
+        </div>
+
+        <!-- Estado -->
+        <div class="form-group">
+          <label>Estado</label>
+          <select class="form-control">
+            <option value="ACTIVO">Activo</option>
+            <option value="ELIMINADO">Eliminado</option>
+          </select>
+        </div>
+
+        <!-- Observaciones -->
+        <div class="form-group full">
+          <label>Observaciones</label>
+          <textarea class="form-control" rows="3" placeholder="Comentarios opcionales"></textarea>
+        </div>
+
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn-primary">Guardar</button>
+        <button type="reset" class="btn-secondary">Limpiar</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

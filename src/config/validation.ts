@@ -1,0 +1,289 @@
+export class CustomValidator {
+
+  /* Validates URL
+  static urlValidator(url): any {
+    if (url.pristine) {
+      return null;
+    }
+    const URL_REGEXP = /^(http?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
+    url.markAsTouched();
+    if (URL_REGEXP.test(url.value)) {
+      return null;
+    }
+    return {
+      invalidUrl: true
+    };
+  }
+  
+  // Validates passwords
+  static matchPassword(group): any {
+    const password = group.controls.password;
+    const confirm = group.controls.confirm;
+    if (password.pristine || confirm.pristine) {
+      return null;
+    }
+    group.markAsTouched();
+    if (password.value === confirm.value) {
+      return null;
+    }
+    return {
+      invalidPassword: true
+    };
+  }
+  
+  // Validates numbers
+  static numberValidator(number): any {
+    if (number.pristine) {
+      return null;
+    }
+    const NUMBER_REGEXP = /^[0-9]+$/;
+    number.markAsTouched();
+    if (NUMBER_REGEXP.test(number.value) || number.value == "") {
+      return null;
+    }
+    return {
+      invalidNumber: true
+    };
+  }
+  
+  // Validates numbers and ","
+  static numberValidatortasa(number): any {
+    if (number.pristine) {
+      return null;
+    }
+    const NUMBER_REGEXP = /^([0-9]|[,])+$/;
+    number.markAsTouched();
+    if (NUMBER_REGEXP.test(number.value) || number.value == "") {
+      return null;
+    }
+    return {
+      invalidNumbertasa: true
+    };
+  }
+  
+  // Validates US SSN
+  static ssnValidator(ssn): any {
+    if (ssn.pristine) {
+      return null;
+    }
+    const SSN_REGEXP = /^(?!219-09-9999|078-05-1120)(?!666|000|9\d{2})\d{3}-(?!00)\d{2}-(?!0{4})\d{4}$/;
+    ssn.markAsTouched();
+    if (SSN_REGEXP.test(ssn.value)) {
+      return null;
+    }
+    return {
+      invalidSsn: true
+    };
+  }
+  
+  // Validates US phone numbers
+  static phoneValidator(number): any {
+    if (number.pristine) {
+      return null;
+    }
+    const PHONE_REGEXP = /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/;
+    number.markAsTouched();
+    if (PHONE_REGEXP.test(number.value)) {
+      return null;
+    }
+    return {
+      invalidNumber: true
+    };
+  }
+  
+  // Validates zip codes
+  static zipCodeValidator(zip): any {
+    if (zip.pristine) {
+      return null;
+    }
+    const ZIP_REGEXP = /^[0-9]{5}(?:-[0-9]{4})?$/;
+    zip.markAsTouched();
+    if (ZIP_REGEXP.test(zip.value)) {
+      return null;
+    }
+    return {
+      invalidZip: true
+    };
+  }
+  
+  // Validates 
+  static stringValidator(name): any {
+    if (name.pristine) {
+      return null;
+    }
+    const FirstName_REGEXP = /^([A-z ñ Ñ])*$/;
+    name.markAsTouched();
+    if (FirstName_REGEXP.test(name.value)) {
+      return null;
+    }
+    return {
+      invalidString: true
+    };
+  }
+  
+  // Validates firstName
+  static nameValidator(name): any {
+    if (name.pristine) {
+      return null;
+    }
+    const FirstName_REGEXP = /^([A-z &aacute;&eacute;&iacute;&oacute;&uacute;&Aacute;&Eacute;&Iacute;&Oacute;&Uacute;&ntilde;&Ntilde;á;é;í;ó;ú;Á;É;Í;Ó;Ú;ñ;Ñ;Ü;ü;ç;Ç;-])*$/;
+    name.markAsTouched();
+    if (FirstName_REGEXP.test(name.value)) {
+      return null;
+    }
+    return {
+      invalidString: true
+    };
+  }
+  
+  // Validates Name entity
+  static nameEmpre(name): any {
+    if (name.pristine) {
+      return null;
+    }
+    const FirstName_REGEXP = /^[^*;¿?]*$/;
+    name.markAsTouched();
+    if (FirstName_REGEXP.test(name.value)) {
+      return null;
+    }
+    return {
+      invalidString: true
+    };
+  }
+  
+  // Validates plazo
+  static plazoSolValidator(plazo): any {
+    if (plazo.pristine) {
+      return null;
+    }
+    const plazoSol_REGEXP = /^([1-9])([0-9])*$/;
+    plazo.markAsTouched();
+    if (plazoSol_REGEXP.test(plazo.value) || plazo.value == "") {
+      return null;
+    }
+    return {
+      invalidPlazo: true
+    };
+  }
+  
+  // Validates tasa
+  static tasaValidator(tasa): any {
+    if (tasa.pristine) {
+      return null;
+    }
+    const tasa_REGEXP = /^(([0-9])|([0-9][0-9]))([,][0-9]+)?$/;
+    tasa.markAsTouched();
+    if (tasa_REGEXP.test(tasa.value) || tasa.value == "") {
+      return null;
+    }
+    return {
+      invalidTasa: true
+    };
+  }
+  
+  // Validates Email
+  static EmailValidator(Email): any {
+    if (Email.pristine) {
+      return null;
+    }
+    const Email_REGEXP = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
+    Email.markAsTouched();
+    if (Email_REGEXP.test(Email.value) || Email.value == "") {
+      return null;
+    }
+    return {
+      invalidEmail: true
+    };
+  }
+  
+  // Validates Rango_25_50
+  static Rango_20_50Validator(Rango_20_50): any {
+    if (Rango_20_50.pristine) {
+      return null;
+    }
+    const Rango_20_50_REGEXP = /^((2[0-9])|([3-4][0-9])|(50))$/;
+    Rango_20_50.markAsTouched();
+    if (Rango_20_50_REGEXP.test(Rango_20_50.value) || Rango_20_50.value == "") {
+      return null;
+    }
+    return {
+      invalidRango_20_50: true
+    };
+  }
+  
+  // Validates Porcentajes
+  static porcenValidator(porcen): any {
+    if (porcen.pristine) {
+      return null;
+    }
+    const porcen_REGEXP = /^[0-9]+[%]$/;
+    porcen.markAsTouched();
+    if (porcen_REGEXP.test(porcen.value) || porcen.value == "") {
+      return null;
+    }
+    return {
+      invalidporcen: true
+    };
+  }
+  
+  // Validates Alfanum
+  static AlfaNumValidator(AlfaNum): any {
+    if (AlfaNum.pristine) {
+      return null;
+    }
+    const AlfaNum_REGEXP = /^([A-Za-z0-9])*$/;
+    AlfaNum.markAsTouched();
+    if (AlfaNum_REGEXP.test(AlfaNum.value) || AlfaNum.value == "") {
+      return null;
+    }
+    return {
+      invalidAlfaNum: true
+    };
+  }
+  
+  // Validates AlfaNumespa
+  static AlfaNumespaValidator(AlfaNumespa): any {
+    if (AlfaNumespa.pristine) {
+      return null;
+    }
+    const AlfaNumespa_REGEXP = /^([A-Za-z0-9]|[ ])*$/;
+    AlfaNumespa.markAsTouched();
+    if (AlfaNumespa_REGEXP.test(AlfaNumespa.value) || AlfaNumespa.value == "") {
+      return null;
+    }
+    return {
+      invalidAlfaNumespa: true
+    };
+  }
+  
+  static identifiValidator(number): any {
+    if (number.pristine) {
+      return null;
+    }
+    const NUMBER_REGEXP = /^(([1]([0-9]{1,9})$)|([2-9]([0-9]{1,8}))$)/;
+    number.markAsTouched();
+    if (NUMBER_REGEXP.test(number.value) || number.value == "") {
+      return null;
+    }
+    return {
+      invalidId: true
+    };
+  }
+  
+  static numCuentaValidator(numCuenta): any {
+    if (numCuenta.pristine) {
+      return null;
+    }
+    const NUMCUENTA_REGEXP = /^(([a-zA-Z0-9]{1})+([0-9a-zA-Z-]*))$/;
+    numCuenta.markAsTouched();
+    if (NUMCUENTA_REGEXP.test(numCuenta.value) || numCuenta.value == "") {
+      return null;
+    }
+    return {
+      invalidnumCuenta: true
+    };
+  }*/
+
+}
+
+
