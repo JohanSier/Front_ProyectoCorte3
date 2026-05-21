@@ -1,19 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ColaboradorService } from '../../services/colaborador-service';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { DatePickerModule } from 'primeng/datepicker';
+import { fechaPasadaValidator } from '../../validators/date.validators';
 import { AyudaService } from '../../services/ayuda-service';
 import { Ayuda } from '../../modelo/ayuda';
 
 @Component({
   selector: 'app-ayuda-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule, InputTextModule, ButtonModule, CardModule, DatePickerModule],
   templateUrl: './ayuda-form.html',
   styleUrl: './ayuda-form.scss'
 })
 export class AyudaForm {
 
   hoy: string = new Date().toISOString().split('T')[0];
+  today: Date = new Date();
   mostrarModal = false;
   errorMensaje = '';
 
@@ -35,7 +43,7 @@ export class AyudaForm {
     fechaRegistro: this.hoy
   };
 
-  constructor(private ayudaService: AyudaService) {}
+  constructor(private ayudaService: AyudaService) { }
 
   onTipoChange() {
     this.ayuda.valor = undefined;

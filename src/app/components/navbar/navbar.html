@@ -1,68 +1,104 @@
-<div class="sidebar">
+<div class="app-layout">
 
-  <div class="sidebar-header">
-    <h4 class="m-0">Comedor</h4>
-  </div>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
 
-  <div class="accordion sidebar-menu" id="sidebarAccordion">
-
-    <!-- Asistentes -->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="asistente">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseAsistente" aria-expanded="false" aria-controls="collapseAsistente">
-          Asistente
-        </button>
-      </h2>
-      <div id="collapseAsistente" class="accordion-collapse collapse" aria-labelledby="asistente"
-           data-bs-parent="#sidebarAccordion">
-        <div class="accordion-body p-0">
-          <a class="sidebar-link" routerLink="/asistentes/listar">Listado Asistentes</a>
-          <a class="sidebar-link" routerLink="/asistentes/crear">Registrar Asistente</a>
-          <a class="sidebar-link" routerLink="/registrar-asistencia">Registrar Asistencia</a>
-          <a class="sidebar-link" href="#">Buscar asistente</a>
-        </div>
-      </div>
+    <div class="sidebar-header">
     </div>
 
-    <!-- Responsables -->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="responsables">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseResponsable">
-          Responsable
-        </button>
-      </h2>
+    <nav class="sidebar-menu">
 
-      <div id="collapseResponsable" class="accordion-collapse collapse" data-bs-parent="#sidebarAccordion">
-        <div class="accordion-body p-0">
-          <a class="sidebar-link" href="#">Registrar Responsable</a>
-          <a class="sidebar-link" href="#">Buscar Responsable</a>
+      <!-- ASISTENTES -->
+      <div class="menu-group">
+
+        <button class="menu-title" data-bs-toggle="collapse" data-bs-target="#asistentesMenu">
+
+          <span>
+            <i class="bi bi-people-fill"></i>
+            Asistentes
+          </span>
+
+          <i class="bi bi-chevron-down"></i>
+        </button>
+
+        <div id="asistentesMenu" class="collapse show">
+
+          <a routerLink="/listar" class="menu-link">
+            <i class="bi bi-list-ul"></i>
+            Listado
+          </a>
+
+          <a routerLink="/crear" class="menu-link">
+            <i class="bi bi-person-plus"></i>
+            Registrar
+          </a>
+
+          <a routerLink="/asistencia" class="menu-link">
+            <i class="bi bi-check2-square"></i>
+            Asistencia
+          </a>
+
         </div>
       </div>
-    </div>
 
-    <!-- Colaboradores -->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="colaborador">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseColaboradores">
-          Colaboradores
+      <!-- RESPONSABLES -->
+      <div class="menu-group">
+
+        <button class="menu-title" data-bs-toggle="collapse" data-bs-target="#responsablesMenu">
+
+          <span>
+            <i class="bi bi-person-badge-fill"></i>
+            Responsables
+          </span>
+
+          <i class="bi bi-chevron-down"></i>
         </button>
-      </h2>
 
-      <div id="collapseColaboradores" class="accordion-collapse collapse" data-bs-parent="#sidebarAccordion">
-        <div class="accordion-body p-0">
-          <a class="sidebar-link" routerLink="/crear">Registrar Colaborador</a>
-          <a class="sidebar-link" routerLink="/listar">Buscar Colaborador</a>
-          <a class="sidebar-link" routerLink="/registrar-ayuda">Registrar Ayuda</a>
+        <div id="responsablesMenu" class="collapse">
+
+          <a href="#" class="menu-link">
+            <i class="bi bi-person-plus"></i>
+            Registrar
+          </a>
+
+          <a href="#" class="menu-link">
+            <i class="bi bi-search"></i>
+            Buscar
+          </a>
+
         </div>
       </div>
-    </div>
 
-  </div>
-</div>
+      <!-- COLABORADORES -->
+      <div class="menu-group">
 
-<div class="main-content">
-  <h2>Contenido principal</h2>
+        <button class="menu-title" data-bs-toggle="collapse" data-bs-target="#colaboradoresMenu">
+
+          <span>
+            <i class="bi bi-briefcase-fill"></i>
+            Colaboradores
+          </span>
+
+          <i class="bi bi-chevron-down"></i>
+        </button>
+
+        <div id="colaboradoresMenu" class="collapse">
+
+          <a routerLink="/colaboradores" class="menu-link">
+            <i class="bi bi-list-ul"></i>
+            Listado
+          </a>
+
+          <a routerLink="/registrar-ayuda" class="menu-link">
+            <i class="bi bi-heart-fill"></i>
+            Ayuda
+          </a>
+
+        </div>
+      </div>
+
+    </nav>
+
+  </aside>
+
 </div>
