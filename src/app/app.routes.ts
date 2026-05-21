@@ -4,7 +4,7 @@ import { AsistenteForm } from './components/asistente-form/asistente-form';
 import { RegistrarAsistencia } from './components/registrar-asistencia/registrar-asistencia';
 import { ColaboradorList } from './components/colaborador-list/colaborador-list';
 import { ColaboradorForm } from './components/colaborador-form/colaborador-form';
-import { Responsables } from './pages/responsables/responsables';
+import { Responsables } from './components/responsables/responsables';
 import { AyudaForm } from './components/ayuda-form/ayuda-form'; //cambiar ruta cuando se agreguen mis archivos
 
 
