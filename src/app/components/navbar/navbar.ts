@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterModule} from '@angular/router';
-import { MenubarModule} from 'primeng/menubar';
-import {ToolbarModule} from 'primeng/toolbar';
-import {ButtonModule} from 'primeng/button';
-import {CommonModule} from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { MenubarModule } from 'primeng/menubar';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 
@@ -17,18 +17,4 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './navbar.scss',
 })
 export class Navbar {
-  items = [
-    {
-      label: 'Gestión Colaboradores',
-      routerLink: '/'
-    },
-    {
-      label: 'Listado',
-      routerLink: '/listar'
-    },
-    {
-      label: 'Nuevo',
-      routerLink: '/crear'
-    }
-  ];
 }

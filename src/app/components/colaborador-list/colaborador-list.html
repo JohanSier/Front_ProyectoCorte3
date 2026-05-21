@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="header-actions">
-      <a class="btn-primary" routerLink="/crear">
+      <a class="btn-primary" routerLink="/crear-colaborador">
         <i class="pi pi-plus"></i>
         Nuevo Colaborador
       </a>
@@ -52,7 +52,7 @@
       <div class="stat-icon icon-slate">
         <i class="pi pi-map-marker"></i>
       </div> -->
-      <!-- <div class="stat-content">
+    <!-- <div class="stat-content">
         <div class="stat-value">{{ ciudadesUnicas }}</div>
         <div class="stat-label">Ciudades</div>
       </div>
@@ -71,10 +71,7 @@
       <div class="table-toolbar">
         <div class="search-input-wrapper">
           <i class="pi pi-search search-icon"></i>
-          <input type="text"
-            pInputText
-            [(ngModel)]="searchTerm"
-            (input)="onSearch()"
+          <input type="text" pInputText [(ngModel)]="searchTerm" (input)="onSearch()"
             placeholder="Buscar colaborador..." />
         </div>
         <button class="btn-icon" title="Actualizar" (click)="cargarColaboradores()">
@@ -84,14 +81,8 @@
     </div>
 
     <!-- Table -->
-    <p-table
-      [value]="filteredColaboradores"
-      [paginator]="true"
-      [rows]="15"
-      [rowsPerPageOptions]="[5, 8, 15, 25]"
-      [tableStyle]="{ 'min-width': '900px' }"
-      stripedRows
-      [loading]="tableLoading">
+    <p-table [value]="filteredColaboradores" [paginator]="true" [rows]="15" [rowsPerPageOptions]="[5, 8, 15, 25]"
+      [tableStyle]="{ 'min-width': '900px' }" stripedRows [loading]="tableLoading">
 
       <ng-template pTemplate="header">
         <tr>
@@ -163,7 +154,7 @@
               </div>
               <h3 class="empty-title">Sin colaboradores</h3>
               <p class="empty-text">No hay registros que coincidan con tu búsqueda.</p>
-              <a class="btn-primary" routerLink="/crear">
+              <a class="btn-primary" routerLink="/crear-colaborador">
                 <i class="pi pi-plus"></i>
                 Agregar el primero
               </a>
@@ -176,4 +167,3 @@
 
   </div>
 </div>
-

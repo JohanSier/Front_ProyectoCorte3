@@ -1,104 +1,74 @@
 <div class="app-layout">
-
   <!-- SIDEBAR -->
   <aside class="sidebar">
-
     <div class="sidebar-header">
     </div>
-
     <nav class="sidebar-menu">
-
       <!-- ASISTENTES -->
       <div class="menu-group">
-
         <button class="menu-title" data-bs-toggle="collapse" data-bs-target="#asistentesMenu">
-
           <span>
             <i class="bi bi-people-fill"></i>
             Asistentes
           </span>
-
           <i class="bi bi-chevron-down"></i>
         </button>
-
         <div id="asistentesMenu" class="collapse show">
-
-          <a routerLink="/listar" class="menu-link">
+          <a routerLink="/listar-asistentes" class="menu-link">
             <i class="bi bi-list-ul"></i>
             Listado
           </a>
-
-          <a routerLink="/crear" class="menu-link">
+          <a routerLink="/registrar-asistente" class="menu-link">
             <i class="bi bi-person-plus"></i>
             Registrar
           </a>
-
-          <a routerLink="/asistencia" class="menu-link">
+          <a routerLink="/registrar-asistencia" class="menu-link">
             <i class="bi bi-check2-square"></i>
             Asistencia
           </a>
-
         </div>
       </div>
-
       <!-- RESPONSABLES -->
       <div class="menu-group">
-
         <button class="menu-title" data-bs-toggle="collapse" data-bs-target="#responsablesMenu">
-
           <span>
             <i class="bi bi-person-badge-fill"></i>
             Responsables
           </span>
-
           <i class="bi bi-chevron-down"></i>
         </button>
-
         <div id="responsablesMenu" class="collapse">
-
-          <a href="#" class="menu-link">
+          <a href="/registrar-responsable" class="menu-link">
             <i class="bi bi-person-plus"></i>
             Registrar
           </a>
-
           <a href="#" class="menu-link">
             <i class="bi bi-search"></i>
             Buscar
           </a>
-
         </div>
       </div>
 
       <!-- COLABORADORES -->
       <div class="menu-group">
-
         <button class="menu-title" data-bs-toggle="collapse" data-bs-target="#colaboradoresMenu">
-
           <span>
             <i class="bi bi-briefcase-fill"></i>
             Colaboradores
           </span>
-
           <i class="bi bi-chevron-down"></i>
         </button>
-
         <div id="colaboradoresMenu" class="collapse">
-
-          <a routerLink="/colaboradores" class="menu-link">
+          <a routerLink="/listar-colaborador" class="menu-link">
             <i class="bi bi-list-ul"></i>
             Listado
           </a>
-
           <a routerLink="/registrar-ayuda" class="menu-link">
             <i class="bi bi-heart-fill"></i>
             Ayuda
           </a>
-
         </div>
       </div>
-
     </nav>
-
   </aside>
-
 </div>
