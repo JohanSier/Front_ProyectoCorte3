@@ -1,91 +1,129 @@
-<div class="asistencia-container">
+<div class="form-page">
 
-  <div class="form-card">
-
-    <h2 class="title">Registrar Asistencia</h2>
-
-    <form [formGroup]="registrarAsistencia" class="form-ingrese text-left" name="registrarAsistencia">
-
-      <div class="form-grid">
-
-        <!-- Asistente ID -->
-        <div class="form-group">
-          <label>Asistente ID</label>
-          <input formControlName="asistenteId" name="asistenteId" type="number" class="form-control"
-            placeholder="Ingrese ID del asistente" (change)="findUser()">
-          <div class="error"
-            *ngIf="registrarAsistencia.get('asistenteId')?.touched && registrarAsistencia.get('asistenteId')?.invalid">
-            Campo inválido
-          </div>
-        </div>
-
-        <!-- Fecha -->
-        <div class="form-group">
-          <label>Fecha</label>
-          <input formControlName="fecha" name="fecha" type="date" class="form-control">
-          <div class="error"
-            *ngIf="registrarAsistencia.get('fecha')?.touched && registrarAsistencia.get('fecha')?.invalid">
-            Campo inválido
-          </div>
-        </div>
-
-        <!-- Tipo de servicio -->
-        <div class="form-group">
-          <label>Tipo de servicio</label>
-          <select formControlName="tipo_servicio" name="tipo_servicio" class="form-control">
-            <option value="">Seleccione</option>
-            <option *ngFor="let item of tiposServicio" [value]="item.id">{{item.descripcion}}</option>
-          </select>
-          <div class="error"
-            *ngIf="registrarAsistencia.get('tipo_servicio')?.touched && registrarAsistencia.get('tipo_servicio')?.invalid">
-            Campo inválido
-          </div>
-        </div>
-
-        <!-- Usuario creación -->
-        <div class="form-group">
-          <label>Usuario creación</label>
-          <input formControlName="usuariocrea" name="usuariocrea" type="text" class="form-control"
-            placeholder="Usuario que registra">
-          <div class="error"
-            *ngIf="registrarAsistencia.get('usuariocrea')?.touched && registrarAsistencia.get('usuariocrea')?.invalid">
-            Campo inválido
-          </div>
-        </div>
-
-        <!-- Estado -->
-        <div class="form-group">
-          <label>Estado</label>
-          <select formControlName="estado" name="estado" class="form-control">
-            <option value="">Seleccione</option>
-            <option *ngFor="let item of estadosUsuario" [value]="item.id">{{item.descripcion}}</option>
-          </select>
-          <div class="error"
-            *ngIf="registrarAsistencia.get('estado')?.touched && registrarAsistencia.get('estado')?.invalid">
-            Campo inválido
-          </div>
-        </div>
-
-        <!-- Observaciones -->
-        <div class="form-group full">
-          <label>Observaciones</label>
-          <textarea formControlName="observaciones" name="observaciones" class="form-control" rows="3"
-            placeholder="Comentarios opcionales" [maxLength]="30"></textarea>
-          <div class="error"
-            *ngIf="registrarAsistencia.get('observaciones')?.touched && registrarAsistencia.get('observaciones')?.invalid">
-            Campo inválido
-          </div>
-        </div>
-
+  <!-- Page Header -->
+  <div class="form-page-header">
+    <div class="page-header-left">
+      <div class="page-icon">
+        <i class="pi pi-user-plus"></i>
       </div>
-
-      <div class="actions">
-        <button (click)="sendRegister()" class=" btn-primary">Guardar</button>
-        <button (click)="ngOnInit()" class="btn-secondary">Limpiar</button>
+      <div>
+        <h1 class="page-title">Registrar Asistencia</h1>
+        <p class="page-subtitle">Completa la información para registrar la asistencia</p>
       </div>
-
-    </form>
-
+    </div>
   </div>
+
+
+  <form [formGroup]="registrarAsistencia" class="form-ingrese text-left" name="registrarAsistencia">
+    <div class="form-card">
+
+      <div class="form-card-header">
+        <h2 class="step-title">Asistencia</h2>
+        <p class="step-description">Consulte el usuario y seleccione la jornada para registrar la asistencia</p>
+      </div>
+
+      <div class="form-card-body">
+        <div class="form-grid cols-2">
+          <!-- Asistente ID -->
+          <div class="form-field">
+            <label class="field-label">Asistente ID<span class="required-dot"></span></label>
+
+
+            <div class="autocomplete-wrapper">
+              <input pInputText type="text" class="form-control" formControlName="asistenteId"
+                placeholder="Buscar por ID o nombre" (focus)="mostrarDropdown = true" />
+              <div class="autocomplete-list" *ngIf="mostrarDropdown && usuarios.length">
+                <div class="autocomplete-item" *ngFor="let usuario of usuarios" (click)="seleccionar(usuario)">
+                  <div>
+                    <strong>👤 {{ usuario.nombre }}</strong>
+                  </div>
+                  <small>ID: {{ usuario.asistenteId }}</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="error"
+              *ngIf="registrarAsistencia.get('asistenteId')?.touched && registrarAsistencia.get('asistenteId')?.invalid">
+              Campo inválido
+            </div>
+          </div>
+
+          <!-- Fecha -->
+          <div class="form-field">
+            <label class="field-label">Fecha</label>
+            <input formControlName="fecha" name="fecha" type="text" pInputText>
+            <!-- <div class="error"
+              *ngIf="registrarAsistencia.get('fecha')?.touched && registrarAsistencia.get('fecha')?.invalid">
+              Campo inválido
+            </div> -->
+          </div>
+
+          <!-- Tipo de servicio -->
+          <div class="form-field">
+            <label class="field-label">Tipo de servicio<span class="required-dot"></span></label>
+            <select formControlName="tipo_servicio" name="tipo_servicio" class="p-inputtext prime-select"
+              style="width:100%">
+              <option value="">Seleccione</option>
+              <option *ngFor="let item of tiposServicio" [value]="item.id">{{item.descripcion}}</option>
+            </select>
+            <div class="error"
+              *ngIf="registrarAsistencia.get('tipo_servicio')?.touched && registrarAsistencia.get('tipo_servicio')?.invalid">
+              Campo inválido
+            </div>
+          </div>
+
+          <!-- Usuario creación 
+          <div class="form-field">
+            <label class="field-label">Usuario creación</label>
+            <input formControlName="usuariocrea" name="usuariocrea" type="text" class="form-control"
+              placeholder="Usuario que registra">
+            <div class="error"
+              *ngIf="registrarAsistencia.get('usuariocrea')?.touched && registrarAsistencia.get('usuariocrea')?.invalid">
+              Campo inválido
+            </div>
+          </div>-->
+
+          <!-- Estado -->
+          <div class="form-field">
+            <label class="field-label">Estado</label>
+            <select formControlName="estado" name="estado" class="p-inputtext prime-select" style="width:100%">
+              <option value="">Seleccione</option>
+              <option *ngFor="let item of estadosUsuario" [value]="item.id">{{item.descripcion}}</option>
+            </select>
+            <div class="error"
+              *ngIf="registrarAsistencia.get('estado')?.touched && registrarAsistencia.get('estado')?.invalid">
+              Campo inválido
+            </div>
+          </div>
+
+          <!-- Observaciones -->
+          <div class="form-group full">
+            <label class="field-label">Observaciones</label>
+            <textarea formControlName="observaciones" name="observaciones" class="form-control" rows="3"
+              placeholder="Comentarios opcionales" [maxLength]="30"></textarea>
+            <div class="error"
+              *ngIf="registrarAsistencia.get('observaciones')?.touched && registrarAsistencia.get('observaciones')?.invalid">
+              Campo inválido
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="form-card-footer">
+        <span class="footer-info">
+          <i class="pi pi-info-circle"></i>
+          Registro Asistencia
+        </span>
+        <div class="footer-actions">
+          <button (click)="sendRegister()" [disabled]="registrarAsistencia.invalid" class=" btn-primary">Registrar
+            Asistencia</button>
+          <button (click)="ngOnInit()" class="btn-secondary">Limpiar</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+
 
 </div>
