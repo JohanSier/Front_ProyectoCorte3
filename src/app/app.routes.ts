@@ -6,6 +6,7 @@ import { RegistrarAsistencia } from './components/registrar-asistencia/registrar
 import { ColaboradorList } from './components/colaborador-list/colaborador-list';
 import { ColaboradorForm } from './components/colaborador-form/colaborador-form';
 import { Responsables } from './pages/responsables/responsables';
+import { AyudaForm } from './components/ayuda-form/ayuda-form';
 
 
 export const routes: Routes = [
@@ -16,6 +17,7 @@ export const routes: Routes = [
   { path: 'asistentes/listar', component: AsistenteList },
   { path: 'asistentes/crear', component: AsistenteForm },
   { path: 'responsables', component: Responsables },
+  { path: 'registrar-ayuda', component: AyudaForm },  // ← agregar
   { path: '', redirectTo: 'listar', pathMatch: 'full' },
   { path: '**', redirectTo: 'listar' }
 ];
