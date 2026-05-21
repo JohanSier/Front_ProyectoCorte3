@@ -1,71 +1,193 @@
-<div class="asistencia-container">
+<div class="form-page">
+
+  <div class="form-page-header">
+    <div class="page-header-left">
+      <div class="page-icon">
+        <i class="pi pi-user-plus"></i>
+      </div>
+      <div>
+        <h1 class="page-title">Registrar Asistente</h1>
+        <p class="page-subtitle">Completa los datos para registrar un nuevo asistente</p>
+      </div>
+    </div>
+  </div>
 
   <div class="form-card">
+    <div class="form-card-body">
+      <div class="form-grid cols-2">
 
-    <h2 class="title">Registrar Asistencia</h2>
-
-    <form>
-
-      <div class="form-grid">
-
-        <!-- Asistente ID -->
-        <div class="form-group">
-          <label>Asistente ID</label>
-          <input type="number" class="form-control" placeholder="Ingrese ID del asistente">
+        <div class="form-field">
+          <label class="field-label">Identificación <span class="required-dot"></span></label>
+          <div class="field-input-wrapper">
+            <i class="pi pi-hashtag field-icon"></i>
+            <input
+              [(ngModel)]="asistente.identificacion"
+              name="identificacion"
+              pInputText
+              placeholder="Número de identificación"
+              [class.input-error]="!asistente.identificacion"
+            />
+          </div>
+          @if (!asistente.identificacion) {
+          <span class="form-field-error">La identificación no puede estar vacía</span>
+          }
         </div>
 
-        <!-- Fecha -->
-        <div class="form-group">
-          <label>Fecha</label>
-          <input type="date" class="form-control">
+        <div class="form-field">
+          <label class="field-label">Nombre completo <span class="required-dot"></span></label>
+          <div class="field-input-wrapper">
+            <i class="pi pi-user field-icon"></i>
+            <input
+              [(ngModel)]="asistente.nombreCompleto"
+              name="nombreCompleto"
+              pInputText
+              placeholder="Nombre completo del asistente"
+              [class.input-error]="!asistente.nombreCompleto"
+            />
+          </div>
+          @if (!asistente.nombreCompleto) {
+          <span class="form-field-error">El nombre completo no puede estar vacío</span>
+          }
         </div>
 
-        <!-- Tipo de servicio -->
-        <div class="form-group">
-          <label>Tipo de servicio</label>
-          <select class="form-control">
-            <option value="">Seleccione</option>
-            <option value="DESAYUNO">Desayuno</option>
-            <option value="ALMUERZO">Almuerzo</option>
-          </select>
+        <div class="form-field">
+          <label class="field-label">Fecha de nacimiento <span class="required-dot"></span></label>
+          <div class="field-input-wrapper no-icon">
+            <input
+              type="date"
+              [(ngModel)]="asistente.fechaNacimiento"
+              name="fechaNacimiento"
+              pInputText
+            />
+          </div>
         </div>
 
-        <!-- Usuario creación -->
-        <div class="form-group">
-          <label>Usuario creación</label>
-          <input type="text" class="form-control" placeholder="Usuario que registra">
+        <div class="form-field">
+          <label class="field-label">Edad <span class="required-dot"></span></label>
+          <div class="field-input-wrapper">
+            <i class="pi pi-calendar field-icon"></i>
+            <input
+              type="number"
+              [(ngModel)]="asistente.edad"
+              name="edad"
+              pInputText
+              placeholder="Edad"
+              min="0"
+            />
+          </div>
         </div>
 
-        <!-- Fecha creación -->
-        <div class="form-group">
-          <label>Fecha creación</label>
-          <input type="datetime-local" class="form-control">
+        <div class="form-field">
+          <label class="field-label">Género <span class="required-dot"></span></label>
+          <div class="field-input-wrapper no-icon">
+            <select
+              class="p-inputtext prime-select"
+              style="width: 100%;"
+              [(ngModel)]="asistente.genero"
+              name="genero"
+            >
+              <option value="" disabled>Seleccione</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Femenino">Femenino</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
         </div>
 
-        <!-- Estado -->
-        <div class="form-group">
-          <label>Estado</label>
-          <select class="form-control">
-            <option value="ACTIVO">Activo</option>
-            <option value="ELIMINADO">Eliminado</option>
-          </select>
+        <div class="form-field">
+          <label class="field-label">Barrio <span class="required-dot"></span></label>
+          <div class="field-input-wrapper">
+            <i class="pi pi-map-marker field-icon"></i>
+            <input
+              [(ngModel)]="asistente.barrio"
+              name="barrio"
+              pInputText
+              placeholder="Barrio de residencia"
+              [class.input-error]="!asistente.barrio"
+            />
+          </div>
+          @if (!asistente.barrio) {
+          <span class="form-field-error">El barrio no puede estar vacío</span>
+          }
         </div>
 
-        <!-- Observaciones -->
-        <div class="form-group full">
-          <label>Observaciones</label>
-          <textarea class="form-control" rows="3" placeholder="Comentarios opcionales"></textarea>
+        <div class="form-field">
+          <label class="field-label">Identificación responsable <span class="required-dot"></span></label>
+          <div class="field-input-wrapper">
+            <i class="pi pi-id-card field-icon"></i>
+            <input
+              [(ngModel)]="asistente.identificacionResponsable"
+              name="identificacionResponsable"
+              pInputText
+              placeholder="Ej: 98765"
+              [class.input-error]="!asistente.identificacionResponsable"
+            />
+          </div>
+          <span class="field-hint">Responsables válidos temporales: 98765, 123456, 55555</span>
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">Fecha de ingreso <span class="required-dot"></span></label>
+          <div class="field-input-wrapper no-icon">
+            <input
+              type="date"
+              [(ngModel)]="asistente.fechaIngreso"
+              name="fechaIngreso"
+              pInputText
+            />
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">Estado del asistente <span class="required-dot"></span></label>
+          <div class="field-input-wrapper no-icon">
+            <select
+              class="p-inputtext prime-select"
+              style="width: 100%;"
+              [(ngModel)]="asistente.estadoAsistente"
+              name="estadoAsistente"
+            >
+              <option value="Activo">Activo</option>
+              <option value="Inactivo">Inactivo</option>
+            </select>
+          </div>
         </div>
 
       </div>
 
-      <div class="actions">
-        <button type="submit" class="btn-primary">Guardar</button>
-        <button type="reset" class="btn-secondary">Limpiar</button>
+      @if (errorMensaje) {
+      <div class="alert-error">
+        {{ errorMensaje }}
       </div>
+      }
 
-    </form>
+      <div class="form-card-footer">
+        <span class="footer-info">
+          <i class="pi pi-info-circle"></i>
+          Estado: {{ asistente.estadoAsistente || 'Activo' }}
+        </span>
 
+        <div class="footer-actions">
+          <button type="button" class="btn-cancelar btn-secondary" (click)="cancelar()">
+            Cancelar
+          </button>
+          <button type="button" class="btn-guardar btn-primary" (click)="guardar()">
+            Guardar Asistente
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
+
+  @if (mostrarModal) {
+  <div class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-icon">✓</div>
+      <h3>¡Asistente registrado exitosamente!</h3>
+      <p>La información fue guardada correctamente.</p>
+      <button class="btn-guardar" (click)="aceptarModal()">Aceptar</button>
+    </div>
+  </div>
+  }
 
 </div>

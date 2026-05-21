@@ -1,15 +1,15 @@
 import { Routes } from '@angular/router';
 import { AsistenteList } from './components/asistente-list/asistente-list';
-import { AsistenteForm } from './components/asistente-form/asistente-form';
+import { RegistrarAsistente } from './components/registrar-asistente/registrar-asistente';
 import { RegistrarAsistencia } from './components/registrar-asistencia/registrar-asistencia';
 import { ColaboradorList } from './components/colaborador-list/colaborador-list';
 import { ColaboradorForm } from './components/colaborador-form/colaborador-form';
 import { Responsables } from './components/responsables/responsables';
-import { AyudaForm } from './components/ayuda-form/ayuda-form'; //cambiar ruta cuando se agreguen mis archivos
-
+import { AyudaForm } from './components/ayuda-form/ayuda-form';
 
 export const routes: Routes = [
-  { path: 'registrar-asistente', component: AsistenteForm },
+  { path: 'registrar-asistente', component: RegistrarAsistente },
+  { path: 'asistentes/crear', component: RegistrarAsistente },
   { path: 'registrar-asistencia', component: RegistrarAsistencia },
   { path: 'listar-asistentes', component: AsistenteList },
   { path: 'registrar-responsable', component: Responsables },
@@ -17,5 +17,5 @@ export const routes: Routes = [
   { path: 'listar-colaborador', component: ColaboradorList },
   { path: 'crear-colaborador', component: ColaboradorForm },
   { path: '', redirectTo: 'listar-colaborador', pathMatch: 'full' },
-  { path: '**', redirectTo: 'listar-colaborador' }
+  { path: '**', redirectTo: 'listar-colaborador' },
 ];

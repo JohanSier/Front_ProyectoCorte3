@@ -1,34 +1,83 @@
-<div class="container mt-4">
-  <h3>Listado de Asistentes</h3>
+<div class="list-page">
+  <div class="list-page-header">
+    <div class="page-header-left">
+      <div class="page-icon">
+        <i class="pi pi-users"></i>
+      </div>
+      <div>
+        <h1 class="page-title">Listado de Asistentes</h1>
+        <p class="page-subtitle">Consulta los asistentes registrados en el sistema</p>
+      </div>
+    </div>
 
-  <table class="table table-striped mt-3">
-    <thead class="table-dark">
-    <tr>
-      <th>Identificación</th>
-      <th>Nombre Completo</th>
-      <th>Edad</th>
-      <th>Género</th>
-      <th>Barrio</th>
-      <th>Responsable</th>
-      <th>Estado</th>
-    </tr>
-    </thead>
-    <tbody>
-    @for (asistente of asistentes; track $index) {
-    <tr>
-      <td>{{ asistente.identificacion }}</td>
-      <td>{{ asistente.nombreCompleto }}</td>
-      <td>{{ asistente.edad }}</td>
-      <td>{{ asistente.genero }}</td>
-      <td>{{ asistente.barrio }}</td>
-      <td>{{ asistente.identificacionResponsable }}</td>
-      <td>{{ asistente.estadoAsistente }}</td>
-    </tr>
-    } @empty {
-    <tr>
-      <td colspan="7" class="text-center">No hay asistentes registrados.</td>
-    </tr>
-    }
-    </tbody>
-  </table>
+    <div class="page-header-right">
+      <span class="counter-badge">
+        {{ asistentes.length }} registro{{ asistentes.length === 1 ? '' : 's' }}
+      </span>
+    </div>
+  </div>
+
+  <div class="list-card">
+    <div class="list-card-body">
+
+      <div class="list-toolbar">
+        <div class="toolbar-info">
+          <i class="pi pi-info-circle"></i>
+          Aquí puedes visualizar los asistentes registrados.
+        </div>
+
+        <button type="button" class="btn-recargar" (click)="cargarAsistentes()">
+          Recargar
+        </button>
+      </div>
+
+      <div *ngIf="cargando" class="loading-box">
+        Cargando asistentes...
+      </div>
+
+      <div *ngIf="errorMensaje && !cargando" class="alert-error">
+        {{ errorMensaje }}
+      </div>
+
+      <div *ngIf="!cargando && !errorMensaje && asistentes.length === 0" class="empty-state">
+        <div class="empty-icon">📭</div>
+        <h3>No hay asistentes registrados</h3>
+        <p>Aún no se han encontrado asistentes en el sistema.</p>
+      </div>
+
+      <div *ngIf="!cargando && !errorMensaje && asistentes.length > 0" class="table-wrapper">
+        <table class="custom-table">
+          <thead>
+          <tr>
+            <th>Identificación</th>
+            <th>Nombre completo</th>
+            <th>Edad</th>
+            <th>Género</th>
+            <th>Barrio</th>
+            <th>Responsable</th>
+            <th>Estado</th>
+            <th>Fecha ingreso</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let asistente of asistentes">
+            <td>{{ asistente.identificacion }}</td>
+            <td>{{ asistente.nombreCompleto }}</td>
+            <td>{{ asistente.edad }}</td>
+            <td>{{ asistente.genero }}</td>
+            <td>{{ asistente.barrio }}</td>
+            <td>{{ asistente.identificacionResponsable }}</td>
+            <td>
+                <span [class]="obtenerEstadoClase(asistente.estadoAsistente)">
+                  {{ asistente.estadoAsistente }}
+                </span>
+            </td>
+            <td>{{ asistente.fechaIngreso }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
 </div>
