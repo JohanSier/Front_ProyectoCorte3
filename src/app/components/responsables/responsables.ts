@@ -1,30 +1,19 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 import { ResponsablesService } from '../../services/responsables';
 
 @Component({
   selector: 'app-responsables',
+  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSnackBarModule,
-    MatProgressSpinnerModule,
-    MatCheckboxModule
+    InputTextModule,
+    ButtonModule,
   ],
   templateUrl: './responsables.html',
   styleUrl: './responsables.scss',
@@ -33,7 +22,7 @@ export class Responsables {
   form: FormGroup;
   submitting = false;
 
-  constructor(private fb: FormBuilder, private service: ResponsablesService, private snack: MatSnackBar) {
+  constructor(private fb: FormBuilder, private service: ResponsablesService) {
     this.form = this.fb.group({
       identificacion: ['', Validators.required],
       nombreCompleto: ['', Validators.required],
@@ -56,20 +45,25 @@ export class Responsables {
     }
   }
 
+  limpiar() {
+    this.form.reset({ tieneVariosNinos: false });
+    while (this.nombresNinos.length > 1) this.nombresNinos.removeAt(1);
+    this.nombresNinos.at(0).setValue('');
+  }
+
   guardar() {
     if (this.form.invalid) return;
     this.submitting = true;
     this.service.create(this.form.value).subscribe({
       next: () => {
-        this.snack.open('Responsable registrado exitosamente', 'Cerrar', { duration: 3000 });
-        this.form.reset({ tieneVariosNinos: false });
-        while (this.nombresNinos.length > 1) this.nombresNinos.removeAt(1);
-        this.nombresNinos.at(0).setValue('');
+        this.limpiar();
         this.submitting = false;
       },
       error: (err) => {
-        const msg = err.status === 409 ? 'Un niño ya está registrado con otro responsable' : 'Error al registrar';
-        this.snack.open(msg, 'Cerrar', { duration: 4000 });
+        const msg = err.status === 409
+          ? 'Un niño ya está registrado con otro responsable'
+          : 'Error al registrar';
+        alert(msg);
         this.submitting = false;
       }
     });
