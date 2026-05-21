@@ -6,7 +6,7 @@ import { RegistrarAsistencia } from './components/registrar-asistencia/registrar
 import { ColaboradorList } from './components/colaborador-list/colaborador-list';
 import { ColaboradorForm } from './components/colaborador-form/colaborador-form';
 import { Responsables } from './pages/responsables/responsables';
-import { AyudaForm } from './components/ayuda-form/ayuda-form';
+import { AyudaForm } from './components/ayuda-form/ayuda-form'; //cambiar ruta cuando se agreguen mis archivos
 
 
 export const routes: Routes = [

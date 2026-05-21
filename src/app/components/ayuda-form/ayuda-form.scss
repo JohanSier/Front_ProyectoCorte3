@@ -3,29 +3,12 @@
   background: #f5f5f5;
 }
 
-.ayuda-header {
-  background: #1480f5;
-  color: white;
-  padding: 16px 24px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-
-  h2 { margin: 0; font-size: 18px; font-weight: 600; }
-
-  .back-btn {
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-  }
-}
-
 .ayuda-card {
   max-width: 520px;
-  margin: 24px auto;
+  margin: -40px auto 20px auto;
   background: white;
   border-radius: 12px;
-  padding: 24px;
+  padding: 34px;
   display: flex;
   flex-direction: column;
   gap: 16px;
