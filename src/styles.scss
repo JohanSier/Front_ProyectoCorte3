@@ -567,9 +567,11 @@ select {
   }
 
   .app-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 2rem;
     margin-top: 60px;   /* altura del header */
-    margin-left: 240px; /* ancho del sidebar */
-    padding: 20px;
     min-height: calc(100vh - 60px);
     background: #f5f6fa;
   }

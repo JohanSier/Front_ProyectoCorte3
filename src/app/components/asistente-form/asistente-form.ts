@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { AsistenteService } from '../../services/asistente-service';
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './asistente-form.html'
 })
-export class AsistenteForm {
+export class AsistenteForm implements OnInit {
   form: FormGroup;
 
   constructor(
@@ -31,6 +31,7 @@ export class AsistenteForm {
     });
   }
 
+  ngOnInit() {}
   guardar() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -48,4 +49,24 @@ export class AsistenteForm {
       }
     });
   }
+
+ calcularEdad(fechaNacimiento: string) {
+
+  const hoy = new Date();
+  const nacimiento = new Date(fechaNacimiento);
+
+  let edad = hoy.getFullYear() - nacimiento.getFullYear();
+
+  const mes = hoy.getMonth() - nacimiento.getMonth();
+
+  if (
+    mes < 0 ||
+    (mes === 0 && hoy.getDate() < nacimiento.getDate())
+  ) {
+    edad--;
+  }
+
+  this.form.get('edad')?.setValue(edad);
+
+}
 }

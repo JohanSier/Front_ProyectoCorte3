@@ -1,0 +1,151 @@
+<div class="form-page">
+
+  <!-- Page Header -->
+  <div class="form-page-header">
+    <div class="page-header-left">
+      <div class="page-icon">
+        <i class="pi pi-users"></i>
+      </div>
+      <div>
+        <h1 class="page-title">Registrar Responsable</h1>
+        <p class="page-subtitle">Ingrese los datos del responsable y sus niños</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Card -->
+  <form [formGroup]="form" (ngSubmit)="guardar()">
+    <div class="form-card">
+
+      <!-- Card Header -->
+      <div class="form-card-header">
+        <h2 class="step-title">Datos del Responsable</h2>
+        <p class="step-description">Identificación, nombre completo y niños a cargo</p>
+      </div>
+
+      <!-- Card Body -->
+      <div class="form-card-body">
+        <div class="form-grid cols-2">
+
+          <!-- Identificación -->
+          <div class="form-field">
+            <label class="field-label" for="identificacion">
+              Identificación
+              <span class="required-dot"></span>
+            </label>
+            <div class="field-input-wrapper">
+              <i class="pi pi-id-card field-icon"></i>
+              <input id="identificacion"
+                     type="text"
+                     pInputText
+                     formControlName="identificacion"
+                     placeholder="Ej: 1234567890" />
+            </div>
+            <span class="form-field-error"
+                  *ngIf="form.get('identificacion')?.hasError('required') && form.get('identificacion')?.touched">
+              <i class="pi pi-exclamation-circle"></i> La identificación es requerida
+            </span>
+          </div>
+
+          <!-- Nombre completo -->
+          <div class="form-field">
+            <label class="field-label" for="nombreCompleto">
+              Nombre completo
+              <span class="required-dot"></span>
+            </label>
+            <div class="field-input-wrapper">
+              <i class="pi pi-user field-icon"></i>
+              <input id="nombreCompleto"
+                     type="text"
+                     pInputText
+                     formControlName="nombreCompleto"
+                     placeholder="Ej: María López" />
+            </div>
+            <span class="form-field-error"
+                  *ngIf="form.get('nombreCompleto')?.hasError('required') && form.get('nombreCompleto')?.touched">
+              <i class="pi pi-exclamation-circle"></i> El nombre es requerido
+            </span>
+          </div>
+
+          <!-- Toggle varios niños -->
+          <div class="form-field span-2">
+            <label class="toggle-option" [class.toggle-selected]="form.get('tieneVariosNinos')?.value">
+              <input type="checkbox" formControlName="tieneVariosNinos" />
+              <div class="toggle-track">
+                <div class="toggle-thumb"></div>
+              </div>
+              <div class="toggle-content">
+                <span class="toggle-label">Tiene varios niños</span>
+                <span class="toggle-desc">Activa esta opción si el responsable tiene más de un niño a cargo</span>
+              </div>
+            </label>
+          </div>
+
+        </div>
+
+        <!-- Niños Section -->
+        <div class="ninos-section">
+          <div class="ninos-section-header">
+            <div class="ninos-section-title">
+              <i class="pi pi-heart"></i>
+              <span>Niños a cargo</span>
+            </div>
+            <button type="button" class="btn-add" (click)="agregarNino()">
+              <i class="pi pi-plus"></i>
+              Agregar niño
+            </button>
+          </div>
+
+          <div formArrayName="nombresNinos" class="ninos-list">
+            <div class="nino-row" *ngFor="let ctrl of nombresNinos.controls; let i = index">
+              <div class="form-field" style="flex: 1; margin-bottom: 0">
+                <div class="field-input-wrapper">
+                  <i class="pi pi-user field-icon"></i>
+                  <input type="text"
+                         pInputText
+                         [formControlName]="i"
+                         [placeholder]="'Nombre del niño ' + (i + 1)" />
+                </div>
+                <span class="form-field-error"
+                      *ngIf="ctrl.hasError('required') && ctrl.touched">
+                  <i class="pi pi-exclamation-circle"></i> El nombre es requerido
+                </span>
+              </div>
+              <button type="button"
+                      class="btn-remove"
+                      (click)="eliminarNino(i)"
+                      *ngIf="nombresNinos.length > 1"
+                      title="Eliminar niño">
+                <i class="pi pi-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Card Footer -->
+      <div class="form-card-footer">
+        <span class="footer-info">
+          <i class="pi pi-info-circle"></i>
+          Complete todos los campos requeridos
+        </span>
+        <div class="footer-actions">
+          <button type="button" class="btn-secondary" (click)="limpiar()">
+            <i class="pi pi-refresh"></i>
+            Limpiar
+          </button>
+          <button type="submit"
+                  class="btn-primary"
+                  [disabled]="form.invalid || submitting">
+            <i class="pi pi-spin pi-spinner" *ngIf="submitting"></i>
+            <i class="pi pi-check" *ngIf="!submitting"></i>
+            {{ submitting ? 'Guardando...' : 'Guardar Responsable' }}
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </form>
+
+</div>

@@ -1,0 +1,142 @@
+<div class="form-page">
+
+  <!-- Page Header -->
+  <div class="form-page-header">
+    <div class="page-header-left">
+      <div class="page-icon">
+        <i class="pi pi-user-plus"></i>
+      </div>
+      <div>
+        <h1 class="page-title">Nueva Ayuda</h1>
+        <p class="page-subtitle">Completa los pasos para registrar una nueva ayuda</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-card">
+    <div class="form-card-body">
+      <div class="form-grid cols-2">
+
+
+        <!-- Tipo de ayuda -->
+        <div class="form-field">
+          <label class="field-label">Tipo de ayuda <span class="required-dot"></span></label>
+          <div class="field-input-wrapper">
+            <select class="p-inputtext prime-select" style="width:100%" [(ngModel)]="ayuda.tipo"
+              (change)="onTipoChange()">
+              <option value="" disabled>Seleccione el tipo de ayuda</option>
+              <option value="DINERO">Dinero</option>
+              <option value="EN_ESPECIE">En especie</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Donante -->
+        <div class="form-field">
+          <label class="field-label">
+            Donante (Colaborador)
+            <span class="required-dot"></span>
+          </label>
+          <div class="field-input-wrapper">
+            <i class="pi pi-hashtag field-icon"></i>
+            <input [(ngModel)]="ayuda.nombreColaborador" pInputText placeholder="Nombre completo del donante"
+              [class.input-error]="!ayuda.nombreColaborador" />
+          </div>
+          @if (!ayuda.nombreColaborador) {
+          <span class="form-field-error">El nombre del donante no puede estar vacío</span>
+          }
+        </div>
+
+        <!-- Fecha -->
+        <div class="form-field">
+          <label class="field-label">Fecha de registro <span class="required-dot"></span></label>
+          <div class="field-input-wrapper">
+            <p-datepicker dateFormat="dd/mm/yy" [showIcon]="true" [maxDate]="today" placeholder="Selecciona una fecha"
+              styleClass="w-full" [(ngModel)]="ayuda.fechaRegistro">
+            </p-datepicker>
+          </div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="form-field">
+          <label class="field-label">Descripción <span class="required-dot"></span></label>
+          <div class="field-input-wrapper">
+            <textarea pInputText [(ngModel)]="ayuda.descripcion" placeholder="Describa el aporte recibido" rows="4"
+              [class.input-error]="!ayuda.descripcion"> </textarea>
+          </div>
+          @if (!ayuda.descripcion) {
+          <span class="form-field-error">La descripción no puede estar vacía</span>
+          }
+        </div>
+
+        <!-- Valor (DINERO) -->
+        @if (ayuda.tipo === 'DINERO') {
+        <div class="form-field">
+          <label class="field-label">Valor ($) <span class="required-dot"></span></label>
+          <div class="field-input-wrapper">
+            <span>$</span>
+            <input type="number" [(ngModel)]="ayuda.valor" placeholder="0.00" min="0.01" step="0.01" pInputText />
+          </div>
+        </div>
+        }
+
+        <!-- Cantidad (EN_ESPECIE) -->
+        @if (ayuda.tipo === 'EN_ESPECIE') {
+        <div class="form-field">
+          <label class="field-label">Cantidad <span class="required-dot"></span></label>
+          <div class="field-input-wrapper">
+            <input type="number" [(ngModel)]="ayuda.cantidad" placeholder="0" min="1" pInputText />
+          </div>
+        </div>
+        }
+
+        <!-- Responsable -->
+        <div class="form-field">
+          <label class="field-label">Responsable que recibe <span class="required-dot"></span></label>
+          <div class="field-input-wrapper">
+            <select class="p-inputtext prime-select" style="width:100%" [(ngModel)]="idResponsableSeleccionado"
+              [class.input-error]="idResponsableSeleccionado === 0">
+              <option [value]="0" disabled>Seleccione el responsable</option>
+              @for (r of responsables; track r.id) {
+              <option [value]="r.id">{{ r.nombre }}</option>
+              }
+            </select>
+          </div>
+          @if (idResponsableSeleccionado === 0) {
+          <span class="form-field-error">El responsable debe estar registrado en el sistema</span>
+          }
+        </div>
+
+      </div>
+      <div class="form-card-footer">
+        <!-- Estado -->
+        <span class="footer-info">
+          <i class="pi pi-info-circle"></i>
+          <span class="dot"></span> Estado: Registrada
+        </span>
+
+        <!-- Error general -->
+        @if (errorMensaje) {
+        <div class="alert-error">{{ errorMensaje }}</div>
+        }
+        <div class="footer-actions">
+          <!-- Botones -->
+          <button type="button" class="btn-guardar btn-primary" (click)="guardar()">Guardar Ayuda</button>
+          <button type="button" class="btn-cancelar btn-primary" (click)="cancelar()">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal éxito -->
+  @if (mostrarModal) {
+  <div class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-icon">✓</div>
+      <h3>¡Ayuda registrada exitosamente!</h3>
+      <p>El aporte ha sido guardado con estado Registrada.</p>
+      <button class="btn-guardar" (click)="aceptarModal()">Aceptar</button>
+    </div>
+  </div>
+  }
+</div>
